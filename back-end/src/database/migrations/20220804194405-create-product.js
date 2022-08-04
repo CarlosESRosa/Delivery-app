@@ -9,11 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100)
       },
       price: {
         type: Sequelize.DECIMAL(4, 2)
       },
+      urlImage: {
+        field: 'url_image',
+        type: Sequelize.STRING(200)
+      }
     });
   },
   async down(queryInterface, Sequelize) {
