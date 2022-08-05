@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { addUser } from '../helpers/fetchAPI';
+// const addUser = (data) => console.log(data);
 
 function Register() {
   const [name, setName] = useState('');
@@ -53,6 +55,7 @@ function Register() {
         disabled={
           name.length < nMinLength || !isEmailValid || password.length < pMinLength
         }
+        onClick={ () => addUser({ name, email, password }) }
       >
         Cadastrar
       </button>
