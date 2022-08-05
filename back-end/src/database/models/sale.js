@@ -15,12 +15,12 @@ const Sale = (sequelize, DataTypes) => {
   });
 
   Sale.associate = (models) => {
-    User.belongsTo(models.User, {
+    Sale.belongsTo(models.User, {
       foreignKey: 'user_id',
       as: 'user'
     });
 
-    User.belongsTo(models.User, {
+    Sale.belongsTo(models.User, {
       foreignKey: 'seller_id',
       as: 'seller'
     });
@@ -29,4 +29,4 @@ const Sale = (sequelize, DataTypes) => {
   return Sale;
 }
 
-export default Sale;
+module.exports = Sale;
