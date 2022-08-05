@@ -1,0 +1,69 @@
+REQ = Requisição
+RES = Response
+MIN = Número mínimo de caracteres (quando string) ou valor mínimo do número (quando number)
+
+POST /login {
+  REQ: {
+    BODY: {
+      email: string,
+      password: string,
+    }
+  }
+
+  RES: {
+    token: string
+  }
+}
+
+GET /user/me {
+  REQ: {
+    HEADERS: {
+      authorization: string (token)
+    }
+  }
+
+  RES: {
+    id: number,
+    name: string,
+    email: string,
+    role: string
+  }
+}
+
+POST /user {
+  REQ: {
+    BODY: {
+      name: string (full name - min 12)
+      email: string,
+      password: string (min 6)
+    }
+  }
+
+  RES: {
+    token: string
+  }
+}
+
+GET /product/:id {
+  REQ: {}
+
+  RES: {
+    id: number,,
+    name: string,
+    price: number (decimal),
+    urlImage: string
+  }
+}
+
+GET /product {
+  REQ: {}
+
+  RES: [
+    {
+      id: number,
+      name: string,
+      price: number (decimal),
+      urlImage: string
+    }
+  ]
+}

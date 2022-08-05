@@ -23,4 +23,12 @@ const login = async (req, res, next) => {
   return res.status(200).json({ token });
 };
 
-module.exports = { create, login };
+const findById = async (req, res) => {
+  const { user } = req;
+
+  const data = await User.findById(user.id);
+
+  return res.status(200).json(data);
+};
+
+module.exports = { create, findById, login };
