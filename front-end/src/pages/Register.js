@@ -7,9 +7,17 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const handleEmail = ({ target }) => {
     setEmail(target.value);
     setIsEmailValid(target.value.includes('.') && target.value.includes('@'));
+  };
+  const handleClick = async () => {
+    const res = await addUser({ name, email, password });
+    const createdStatusNumber = 201;
+    if (res.status !== createdStatusNumber) {
+      setErrorMsg('Registro inválido');
+    }
   };
   const nMinLength = 12;
   const pMinLength = 6;
@@ -55,11 +63,13 @@ function Register() {
         disabled={
           name.length < nMinLength || !isEmailValid || password.length < pMinLength
         }
-        onClick={ () => addUser({ name, email, password }) }
+        onClick={ handleClick }
       >
         Cadastrar
       </button>
-      <span data-testid="common_register__element-invalid_register" />
+      <span data-testid="common_register__element-invalid_register">
+        { errorMsg }
+      </span>
     </form>
   );
 }
