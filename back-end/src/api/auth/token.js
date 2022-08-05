@@ -14,9 +14,9 @@ const validateToken = async (req, res, next) => {
   if (!token) return res.status(401).json({ error: { message: 'Token não encontrado.' } });
 
   try {
-    const { data: { name } } = jwt.verify(token, secret);
+    const { data: { id } } = jwt.verify(token, secret);
 
-    const user = await User.findOne({ where: { name } });
+    const user = await User.findByPk(id);
 
     if (!user) {
       return res.status(401).json(

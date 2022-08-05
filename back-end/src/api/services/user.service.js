@@ -12,7 +12,7 @@ const create = async (userData) => {
 
   const encryptedPassword = md5(password);
 
-  const user = await User.create({ ...otherData, password: encryptedPassword });
+  const user = await User.create({ ...otherData, password: encryptedPassword, role: 'costumer' });
 
   return User.findByPk(user.id, {
     attributes: ['id', 'name', 'email', 'role'],
