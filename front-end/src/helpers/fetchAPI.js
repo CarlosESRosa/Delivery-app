@@ -11,7 +11,14 @@ export const addUser = async (data) => {
 
 export const getUser = async () => {
   const url = '/user/me';
-  const res = await axios({ url, method: 'get', baseURL });
+  const res = await axios({ url, baseURL });
+  console.log(res);
+  return res;
+};
+
+export const getProducts = async () => {
+  const url = '/product';
+  const res = await axios({ url, baseURL });
   console.log(res);
   return res;
 };

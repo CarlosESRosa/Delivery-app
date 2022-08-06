@@ -1,19 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function Product(props) {
   const { id, name, price, urlImage } = props;
+  const [quantity, setQuantity] = useState(0);
+  const handleQuantity = ({ target }) => setQuantity(target.value);
+  const increaseQuantity = () => setQuantity((prev) => prev + 1);
+  const decreaseQuantity = () => setQuantity((prev) => prev - 1);
   return (
     <div>
-      <aside>{ price }</aside>
+      <aside data-testid={ `customer_products__element-card-price-${id}` }>
+        { price }
+      </aside>
       <body>
-        <img src={ urlImage } alt={ name } />
-        <h5>{ name }</h5>
+        <img
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          src={ urlImage }
+          alt={ name }
+        />
+        <h5 data-testid={ `customer_products__element-card-title-${id}` }>{ name }</h5>
       </body>
       <footer>
-        <button type="button" onClick={ () => { decreaseQuantity(id); } }>-</button>
-        <strong>{ Quantity(id) }</strong>
-        <button type="button" onClick={ () => { increaseQuantity(id); } }>+</button>
+        <button
+          data-testid={ `customer_products__button-card-rm-item-${id}` }
+          type="button"
+          onClick={ () => decreaseQuantity() }
+        >
+          -
+        </button>
+        <input
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+          type="number"
+          value={ quantity }
+          onClick={ handleQuantity }
+        />
+        <button
+          data-testid={ `customer_products__button-card-add-item-${id}` }
+          type="button"
+          onClick={ () => increaseQuantity() }
+        >
+          +
+        </button>
       </footer>
     </div>
   );
