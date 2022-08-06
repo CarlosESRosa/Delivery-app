@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { pMinLength } from '../helpers/constants';
 import { getUser } from '../helpers/fetchAPI';
 import { saveUser } from '../helpers/localStore';
 
@@ -16,6 +17,8 @@ function Login() {
     const userData = await getUser({ email, password });
     saveUser(userData);
   };
+
+  const isEmailValid = email.includes('.') && email.includes('@');
 
   return (
     <form>
@@ -37,6 +40,7 @@ function Login() {
         type="button"
         data-testid="common_login__button-login"
         onClick={ handleLogin }
+        disabled={ !isEmailValid || password.length < pMinLength }
       >
         LOGIN
       </button>

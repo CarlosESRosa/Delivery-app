@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { nMinLength, pMinLength } from '../helpers/constants';
 import { addUser } from '../helpers/fetchAPI';
 // const addUser = (data) => console.log(data);
 
@@ -19,8 +20,6 @@ function Register() {
       setErrorMsg('Registro inválido');
     }
   };
-  const nMinLength = 12;
-  const pMinLength = 6;
   return (
     <form>
       <h1>Cadastro</h1>
