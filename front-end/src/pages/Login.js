@@ -47,7 +47,7 @@ function Login() {
       <button
         type="button"
         data-testid="common_login__button-register"
-        onClick={ () => navigate('./register') }
+        onClick={ () => navigate('../register') }
       >
         Ainda não tenho uma conta
       </button>
