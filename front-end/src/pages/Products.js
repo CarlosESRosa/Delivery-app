@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Product from '../components/Product';
-import { getProducts } from '../helpers/fetchAPI';
+import { getProducts, getUser } from '../helpers/fetchAPI';
+import { cleanUserData } from '../helpers/localStore';
 
 export default function Products() {
   // const products = [];
   const [products, setProducts] = useState([]);
+  const [username, setUsername] = useState('User');
+  const navigate = useNavigate();
   const getAll = async () => {
+    setUsername(getUser().name);
     const allProducts = await getProducts();
     setProducts(allProducts);
+  };
+  const handleLogout = () => {
+    cleanUserData();
+    navigate('/');
   };
   useEffect(() => getAll(), []);
   return (
@@ -32,11 +40,11 @@ export default function Products() {
           type="button"
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          user
+          { username }
         </button>
         <button
           type="button"
-          onClick={ useNavigate('/') }
+          onClick={ handleLogout }
           data-testid="customer_products__element-navbar-link-logout"
         >
           Sair

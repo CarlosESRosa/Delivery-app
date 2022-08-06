@@ -9,9 +9,9 @@ export const addUser = async (data) => {
   return res;
 };
 
-export const getUser = async () => {
+export const getUser = async (data) => {
   const url = '/user/me';
-  const res = await axios({ url, baseURL });
+  const res = await axios({ url, data, baseURL });
   console.log(res);
   return res;
 };

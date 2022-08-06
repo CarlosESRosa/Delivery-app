@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../helpers/fetchAPI';
+import { saveUser } from '../helpers/localStore';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -8,6 +10,11 @@ function Login() {
 
   const handleChange = ({ target }, setter) => {
     setter(target.value);
+  };
+
+  const handleLogin = async () => {
+    const userData = await getUser({ email, password });
+    saveUser(userData);
   };
 
   return (
@@ -26,7 +33,13 @@ function Login() {
         value={ password }
         onChange={ (event) => handleChange(event, setPassword) }
       />
-      <button type="button" data-testid="common_login__button-login">LOGIN</button>
+      <button
+        type="button"
+        data-testid="common_login__button-login"
+        onClick={ handleLogin }
+      >
+        LOGIN
+      </button>
       <button
         type="button"
         data-testid="common_login__button-register"
