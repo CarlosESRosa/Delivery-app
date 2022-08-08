@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://localhost:3001';
+const baseURL = 'http://localhost:3001';
 
 export const addUser = async (data) => {
   const url = '/user';
@@ -16,16 +16,27 @@ export const addUser = async (data) => {
   return res;
 };
 
-export const getUser = async (data) => {
+export const getUser = async (token) => {
   const url = '/user/me';
-  const res = await axios({ url, data, baseURL });
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const res = await axios.get(baseURL + url, config);
+  return res;
+};
+
+export const login = async (data) => {
+  const url = '/login';
+  const res = await axios.post(baseURL + url, data);
   console.log(res);
   return res;
 };
 
 export const getProducts = async () => {
   const url = '/product';
-  const res = await axios({ url, baseURL });
+  const res = await axios(baseURL + url);
   console.log(res);
   return res;
 };
