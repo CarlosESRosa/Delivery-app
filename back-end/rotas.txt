@@ -2,6 +2,16 @@ REQ = Requisição
 RES = Response
 MIN = Número mínimo de caracteres (quando string) ou valor mínimo do número (quando number)
 
+--------------------------
+
+PUBLIC:
+
+GET /images/products/nomeDaImagem.jpg
+
+Exibe a imagem.
+
+--------------------------
+
 POST /login {
   REQ: {
     BODY: {
@@ -66,4 +76,107 @@ GET /product {
       urlImage: string
     }
   ]
+}
+
+POST /sale {
+  REQ: {
+    HEADERS: {
+      authorization: string (token)
+    },
+    BODY: {
+      sellerId: string,
+      deliveryAddress: string,
+      deliveryNumber: string,
+      totalPrice: number (decimal),
+      products: [
+        {
+          id: string,
+          quantity: number
+        }
+        ...
+      ]
+    }
+  }
+
+  RES: {
+    id: number,
+	  userId: number,
+	  sellerId: number,
+	  deliveryAddress: string,
+	  deliveryNumber": number,
+	  totalPrice: number,
+	  saleDate: string (date)
+  }
+}
+
+GET /sale {
+  REQ: {
+    HEADERS: {
+      authorization: string (token)
+    }
+  },
+
+  RES: [{
+		id: number,
+		deliveryAddress: string,
+		deliveryNumber: string,
+		saleDate: string,
+		sellerId: number,
+		status: string,
+		totalPrice: number,
+		userId: number,
+		user_id: number,
+		seller_id: number,
+		sales: [
+			{
+				id: number,
+				name: string,
+				price: number,
+				urlImage: string,
+				SaleProduct: {
+					saleId: number,
+					productId: number,
+					quantity: number,
+					sale_id: number,
+					product_id: number
+				}
+			},
+		]
+	}]
+}
+
+GET /sale/:id {
+    REQ: {
+    HEADERS: {
+      authorization: string (token)
+    }
+  },
+
+  RES: {
+		id: number,
+		deliveryAddress: string,
+		deliveryNumber: string,
+		saleDate: string,
+		sellerId: number,
+		status: string,
+		totalPrice: number,
+		userId: number,
+		user_id: number,
+		seller_id: number,
+		sales: [
+			{
+				id: number,
+				name: string,
+				price: number,
+				urlImage: string,
+				SaleProduct: {
+					saleId: number,
+					productId: number,
+					quantity: number,
+					sale_id: number,
+					product_id: number
+				}
+			},
+		]
+	}
 }
