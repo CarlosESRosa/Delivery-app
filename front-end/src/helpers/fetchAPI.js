@@ -16,10 +16,14 @@ export const addUser = async (data) => {
   return res;
 };
 
-export const getUser = async (data) => {
+export const getUser = async (token) => {
   const url = '/user/me';
-  const res = await axios({ url, data, baseURL });
-  console.log(res);
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const res = await axios.get(baseURL + url, config);
   return res;
 };
 
@@ -32,7 +36,7 @@ export const login = async (data) => {
 
 export const getProducts = async () => {
   const url = '/product';
-  const res = await axios({ url, baseURL });
+  const res = await axios(baseURL + url);
   console.log(res);
   return res;
 };

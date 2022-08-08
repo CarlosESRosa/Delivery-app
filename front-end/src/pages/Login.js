@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { pMinLength } from '../helpers/constants';
 import { login } from '../helpers/fetchAPI';
-import { saveUser } from '../helpers/localStore';
+// import { saveUser } from '../helpers/localStore';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -16,8 +16,8 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const userData = await login({ email, password });
-      saveUser(userData);
+      await login({ email, password });
+      navigate('/customer/products');
     } catch (error) {
       setIsInvalidLogin(true);
       console.log(error);
