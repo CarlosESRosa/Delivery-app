@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
+import { nMinLength, pMinLength } from '../helpers/constants';
+import { addUser } from '../helpers/fetchAPI';
+// const addUser = (data) => console.log(data);
 
 function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const handleEmail = ({ target }) => {
     setEmail(target.value);
     setIsEmailValid(target.value.includes('.') && target.value.includes('@'));
   };
-  const nMinLength = 12;
-  const pMinLength = 6;
+  const handleClick = async () => {
+    const res = await addUser({ name, email, password });
+    const createdStatusNumber = 201;
+    if (res.status !== createdStatusNumber) {
+      setErrorMsg('Registro inválido');
+    }
+  };
   return (
     <form>
       <h1>Cadastro</h1>
@@ -53,10 +62,13 @@ function Register() {
         disabled={
           name.length < nMinLength || !isEmailValid || password.length < pMinLength
         }
+        onClick={ handleClick }
       >
         Cadastrar
       </button>
-      <span data-testid="common_register__element-invalid_register" />
+      <span data-testid="common_register__element-invalid_register">
+        { errorMsg }
+      </span>
     </form>
   );
 }

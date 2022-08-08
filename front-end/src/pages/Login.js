@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { pMinLength } from '../helpers/constants';
+import { getUser } from '../helpers/fetchAPI';
+import { saveUser } from '../helpers/localStore';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -9,6 +12,13 @@ function Login() {
   const handleChange = ({ target }, setter) => {
     setter(target.value);
   };
+
+  const handleLogin = async () => {
+    const userData = await getUser({ email, password });
+    saveUser(userData);
+  };
+
+  const isEmailValid = email.includes('.') && email.includes('@');
 
   return (
     <form>
@@ -26,11 +36,18 @@ function Login() {
         value={ password }
         onChange={ (event) => handleChange(event, setPassword) }
       />
-      <button type="button" data-testid="common_login__button-login">LOGIN</button>
+      <button
+        type="button"
+        data-testid="common_login__button-login"
+        onClick={ handleLogin }
+        disabled={ !isEmailValid || password.length < pMinLength }
+      >
+        LOGIN
+      </button>
       <button
         type="button"
         data-testid="common_login__button-register"
-        onClick={ () => navigate('./register') }
+        onClick={ () => navigate('../register') }
       >
         Ainda não tenho uma conta
       </button>
