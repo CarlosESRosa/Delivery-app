@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { nMinLength, pMinLength } from '../helpers/constants';
 import { addUser } from '../helpers/fetchAPI';
 // const addUser = (data) => console.log(data);
@@ -9,6 +10,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const navigate = useNavigate();
   const handleEmail = ({ target }) => {
     setEmail(target.value);
     setIsEmailValid(target.value.includes('.') && target.value.includes('@'));
@@ -18,6 +20,8 @@ function Register() {
     const createdStatusNumber = 201;
     if (res.status !== createdStatusNumber) {
       setErrorMsg('Registro inválido');
+    } else {
+      navigate('../customer/products');
     }
   };
   return (
