@@ -30,4 +30,14 @@ const findById = async (req, res, next) => {
   return res.status(200).json(data);
 };
 
-module.exports = { create, findAll, findById };
+const update = async (req, res, next) => {
+  const { user: { role }, params: { id }, body: { status } } = req;
+
+  const sale = await Sale.update(id, role, status);
+
+  if (sale.error) return next(sale.error);
+
+  return res.status(200).json(sale);
+};
+
+module.exports = { create, findAll, findById, update };

@@ -50,6 +50,30 @@ const findById = async (userId, role, saleId) => {
   return sale;
 };
 
-const update = async (saleId, data) => Sale.update(saleId, data);
+const validateStatus = (userRole) => {
+  const status = {
+    seller: ['Preparando', 'Em Trânsito', 'Entregue'],
+    customer: ['Entregue'],
+  };
+  
+  return !(
+    (userRole === 'seller' && !status.seller.includes(status))
+    || (userRole === 'customer' && !status.customer.includes(status))
+  );
+};
+
+const update = async (saleId, userId, userRole, status) => {
+  const sale = await Sale.findByPk(saleId);
+
+  if (!sale) return { error: ERRORS.NotFound };
+
+  if (sale.userId || sale.sellerId !== userId) return { error: ERRORS.Conflict };
+
+  if (!validateStatus(userRole)) return { error: ERRORS.Conflict };
+  
+  await Sale.update({ status }, { where: { id: saleId } });
+
+  return Sale.findByPk(saleId);
+};
 
 module.exports = { create, findAll, findById, update };

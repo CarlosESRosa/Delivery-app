@@ -10,5 +10,7 @@ const router = Router();
 
 router.get('/me', validateToken, rescue(User.findById));
 router.post('/', nameValidation, emailValidation, passwordValidation, rescue(User.create));
+router.post('/admin', validateToken, nameValidation, emailValidation, passwordValidation,
+  rescue(User.createWithRole));
 
 module.exports = router;
