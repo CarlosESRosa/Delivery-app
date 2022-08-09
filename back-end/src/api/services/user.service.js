@@ -20,6 +20,24 @@ const create = async (userData) => {
   });
 };
 
+const createWithRole = async (userRole, userData) => {
+  if (userRole !== 'admin') return { error: ERRORS.Conflict };
+  const hasUser = await User.findOne({ where: { email: userData.email } });
+
+  if (hasUser) return { error: ERRORS.Conflict };
+
+  const { password, ...otherData } = userData;
+
+  const encryptedPassword = md5(password);
+
+  const user = await User.create({ ...otherData, password: encryptedPassword });
+
+  return User.findByPk(user.id, {
+    attributes: ['id', 'name', 'email', 'role'],
+    raw: true,
+  });
+};
+
 const findById = async (userId) => User.findByPk(userId, {
   attributes: ['id', 'name', 'email', 'role'],
   raw: true,
@@ -42,4 +60,4 @@ const login = async (email, password) => {
   return user;
 };
 
-module.exports = { create, findById, findByField, login };
+module.exports = { create, createWithRole, findById, findByField, login };

@@ -23,6 +23,16 @@ const login = async (req, res, next) => {
   return res.status(200).json({ token });
 };
 
+const createWithRole = async (req, res, next) => {
+  const { user: { role } } = req;
+
+  const user = await User.createWithRole(role, req.body);
+
+  if (user.error) return next(user.error);
+  
+  return res.status(201).json(user);
+};
+
 const findById = async (req, res) => {
   const { user } = req;
 
@@ -31,4 +41,4 @@ const findById = async (req, res) => {
   return res.status(200).json(data);
 };
 
-module.exports = { create, findById, login };
+module.exports = { create, createWithRole, findById, login };
