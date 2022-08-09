@@ -8,5 +8,6 @@ const router = Router();
 router.post('/', validateToken, rescue(Sale.create));
 router.get('/:id', validateToken, rescue(Sale.findById));
 router.get('/', validateToken, rescue(Sale.findAll));
+router.put('/:id', validateToken, rescue(Sale.update));
 
 module.exports = router;
