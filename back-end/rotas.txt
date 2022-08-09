@@ -6,7 +6,7 @@ MIN = Número mínimo de caracteres (quando string) ou valor mínimo do número 
 
 PUBLIC:
 
-GET /images/products/nomeDaImagem.jpg
+GET /images/nomeDaImagem.jpg
 
 Exibe a imagem.
 
@@ -179,4 +179,29 @@ GET /sale/:id {
 			},
 		]
 	}
+}
+
+PUT /sale/:id {
+  REQ: {
+    HEADERS: {
+      authorization: string (token)
+    },
+
+  BODY: {
+    status: string
+  }
+  },
+
+  RES: {
+		id: number,
+		deliveryAddress: string,
+		deliveryNumber: string,
+		saleDate: string,
+		sellerId: number,
+		status: string,
+		totalPrice: number,
+		userId: number,
+		user_id: number,
+		seller_id: number,
+  }
 }
