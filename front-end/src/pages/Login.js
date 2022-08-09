@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { pMinLength } from '../helpers/constants';
-import { login } from '../helpers/fetchAPI';
-// import { saveUser } from '../helpers/localStore';
+import { getUser, login } from '../helpers/fetchAPI';
+import { saveUser } from '../helpers/localStore';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -16,7 +16,11 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      await login({ email, password });
+      const tokenResponse = await login({ email, password });
+      const userResponse = await getUser(tokenResponse.data.token);
+      const { id, ...userData } = userResponse.data;
+
+      saveUser({ ...userData, token: tokenResponse.data.token });
       navigate('/customer/products');
     } catch (error) {
       setIsInvalidLogin(true);
