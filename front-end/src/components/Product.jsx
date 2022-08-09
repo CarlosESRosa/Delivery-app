@@ -12,14 +12,14 @@ export default function Product(props) {
       <aside data-testid={ `customer_products__element-card-price-${id}` }>
         { price }
       </aside>
-      <body>
+      <section>
         <img
           data-testid={ `customer_products__img-card-bg-image-${id}` }
           src={ urlImage }
           alt={ name }
         />
         <h5 data-testid={ `customer_products__element-card-title-${id}` }>{ name }</h5>
-      </body>
+      </section>
       <footer>
         <button
           data-testid={ `customer_products__button-card-rm-item-${id}` }
@@ -32,7 +32,7 @@ export default function Product(props) {
           data-testid={ `customer_products__input-card-quantity-${id}` }
           type="number"
           value={ quantity }
-          onClick={ handleQuantity }
+          onChange={ handleQuantity }
         />
         <button
           data-testid={ `customer_products__button-card-add-item-${id}` }
