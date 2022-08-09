@@ -56,7 +56,7 @@ export default function Products() {
             key={ id }
             id={ id }
             name={ name }
-            price={ price }
+            price={ price.replace(/\./, ',') }
             urlImage={ urlImage }
           />
         ))}
