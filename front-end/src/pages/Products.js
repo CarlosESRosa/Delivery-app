@@ -10,7 +10,7 @@ export default function Products() {
   const [username, setUsername] = useState('User');
   const navigate = useNavigate();
   const getAll = async () => {
-    setUsername(getUser().name);
+    setUsername(getUser(localStorage.getItem('token')).name);
     const allProducts = await getProducts();
     setProducts(allProducts.data);
   };
