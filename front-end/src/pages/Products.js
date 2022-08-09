@@ -50,11 +50,17 @@ export default function Products() {
           Sair
         </button>
       </nav>
-      <body>
-        {products.forEach((p) => {
-          <Product props={ p } />;
-        })}
-      </body>
+      <section>
+        {products.map(({ id, name, price, url_image: urlImage }) => (
+          <Product
+            key={ id }
+            id={ id }
+            name={ name }
+            price={ price }
+            urlImage={ urlImage }
+          />
+        ))}
+      </section>
     </div>
   );
 }
