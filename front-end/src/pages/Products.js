@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Product from '../components/Product';
-import { getProducts, getUser } from '../helpers/fetchAPI';
-import { cleanUserData } from '../helpers/localStore';
+import { getProducts } from '../helpers/fetchAPI';
+import { cleanUserData, getLocalUser } from '../helpers/localStore';
 
 export default function Products() {
   // const products = [];
@@ -10,7 +10,7 @@ export default function Products() {
   const [username, setUsername] = useState('User');
   const navigate = useNavigate();
   const getAll = async () => {
-    setUsername(getUser(localStorage.getItem('token')).name);
+    setUsername(getLocalUser().name);
     const allProducts = await getProducts();
     setProducts(allProducts.data);
   };
