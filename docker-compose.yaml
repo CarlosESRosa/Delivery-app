@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./back-end/database:/db
+    networks:
+      database:
+
+  api:
+    build: ./back-end
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 3001:3001
+    environment:
+      - API_PORT=3001
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - HOSTNAME=db
+      - MYSQL_PASSWORD=root
+      - MYSQL_DB_NAME=delivery-app
+      - NODE_ENV=development
+    volumes:
+      - ./back-end/:/app-backend
+      - /back-end/node_modules
+    networks:
+      database:
+      api:
+
+  frontend:
+      build: ./front-end
+      depends_on:
+        - api
+      restart: always
+      ports:
+        - 3000:3000
+      volumes:
+        - ./front-end/:/app-frontend
+        - /front-end/node_modules
+      networks:
+        api:
+        frontend:
+
+networks:
+  database:
+  api:
+  frontend:
