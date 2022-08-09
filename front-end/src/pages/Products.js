@@ -12,7 +12,7 @@ export default function Products() {
   const getAll = async () => {
     setUsername(getUser().name);
     const allProducts = await getProducts();
-    setProducts(allProducts);
+    setProducts(allProducts.data);
   };
   const handleLogout = () => {
     cleanUserData();
@@ -24,14 +24,14 @@ export default function Products() {
       <nav>
         <button
           type="button"
-          onClick={ useNavigate('/customer/products') }
+          onClick={ () => navigate('/customer/products') }
           data-testid="customer_products__element-navbar-link-products"
         >
           PRODUTOS
         </button>
         <button
           type="button"
-          onClick={ useNavigate('/customer/orders') }
+          onClick={ () => navigate('/customer/orders') }
           data-testid="customer_products__element-navbar-link-orders"
         >
           MEUS PEDIDOS
