@@ -6,7 +6,7 @@ import { getProducts } from '../helpers/fetchAPI';
 import '../App.css';
 
 export default function Products() {
-  // const products = [];
+  // trocar a linha 39 e 42 pelo valor total do carrinho,na linha 42 manter o .toFixed...
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const getAll = async () => {
