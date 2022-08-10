@@ -4,6 +4,8 @@ import Header from '../components/Header';
 import Product from '../components/Product';
 import { getProducts } from '../helpers/fetchAPI';
 import '../App.css';
+import NavBar from '../components/NavBar'; // onde está escrito valor total do carinho tem quem implementar a somatoría do
+// banco de dados,
 
 export default function Products() {
   // trocar a linha 39 e 42 pelo valor total do carrinho,na linha 42 manter o .toFixed...replace('.', ',')
@@ -16,6 +18,7 @@ export default function Products() {
   useEffect(() => getAll(), []);
   return (
     <div>
+      <NavBar />
       <Header isProductPage />
       <section>
         {products.map(({ id, name, price, url_image: urlImage }) => (
