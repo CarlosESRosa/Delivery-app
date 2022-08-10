@@ -51,3 +51,28 @@ export const getSales = async (token) => {
   const res = await axios(baseURL + url, config);
   return res;
 };
+
+export const getSaleById = async (token, id) => {
+  const url = `/sale/${id}`;
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const res = await axios(baseURL + url, config);
+  return res;
+};
+
+export const updateSaleStatus = async (token, id, status) => {
+  const url = `/sale/${id}`;
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+    body: {
+      status,
+    },
+  };
+  const res = await axios.put(baseURL + url, config);
+  return res;
+};
