@@ -40,3 +40,14 @@ export const getProducts = async () => {
   console.log(res);
   return res;
 };
+
+export const getSales = async (token) => {
+  const url = '/sale';
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const res = await axios(baseURL + url, config);
+  return res;
+};
