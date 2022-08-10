@@ -1,5 +1,5 @@
 const ERRORS = require('../consts/Errors');
-const { Sale, Product, SaleProduct } = require('../../database/models');
+const { User, Sale, Product, SaleProduct } = require('../../database/models');
 
 const create = async (data) => {
   const { products, ...saleData } = data;
@@ -38,6 +38,14 @@ const findById = async (userId, role, saleId) => {
       model: Product,
       as: 'sales',
       attributes: ['id', 'name', 'price', 'url_image'],
+    },{
+      model: User,
+      as: 'user',
+      attributes: ['id', 'name', 'role']
+    },{
+      model: User,
+      as: 'seller',
+      attributes: ['id', 'name', 'role']     
     }],
   });
 
