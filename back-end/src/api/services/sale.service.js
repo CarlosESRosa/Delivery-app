@@ -1,5 +1,5 @@
 const ERRORS = require('../consts/Errors');
-const { Sale, Product, SaleProduct } = require('../../database/models');
+const { User, Sale, Product, SaleProduct } = require('../../database/models');
 
 const create = async (data) => {
   const { products, ...saleData } = data;
@@ -33,20 +33,19 @@ const findAll = async (id, role) => {
 };
 
 const findById = async (userId, role, saleId) => {
-  const sale = await Sale.findByPk(saleId, {
-    include: [{
+  const sale = await Sale.findByPk(saleId, { include: [{
       model: Product,
       as: 'sales',
       attributes: ['id', 'name', 'price', 'url_image'],
+    }, {
+      model: User, as: 'user', attributes: ['id', 'name', 'role'],
+    }, {
+      model: User, as: 'seller', attributes: ['id', 'name', 'role'],
     }],
   });
-
   if (!sale) return { error: ERRORS.NotFound };
-
   const field = role === 'customer' ? 'userId' : 'sellerId';
-
   if (sale[field] !== userId) return { error: ERRORS.Conflict };
-
   return sale;
 };
 

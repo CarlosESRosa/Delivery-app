@@ -4,20 +4,20 @@ import PropTypes from 'prop-types';
 export default function Order({ id, status, saleDate, totalPrice }) {
   return (
     <div>
-      <section data-testId={ `customer_orders__element-order-id-${id}` }>
+      <section data-testid={ `customer_orders__element-order-id-${id}` }>
         { id }
       </section>
 
-      <section data-testId={ `customer_orders__element-delivery-status-${id}` }>
+      <section data-testid={ `customer_orders__element-delivery-status-${id}` }>
         { status }
       </section>
 
       <section>
-        <section data-testId={ `customer_orders__element-order-date-${id}` }>
+        <section data-testid={ `customer_orders__element-order-date-${id}` }>
           { saleDate }
         </section>
 
-        <section data-testId={ `customer_orders__element-card-price-${id}` }>
+        <section data-testid={ `customer_orders__element-card-price-${id}` }>
           { totalPrice }
         </section>
       </section>

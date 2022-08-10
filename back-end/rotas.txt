@@ -175,7 +175,17 @@ GET /sale/:id {
 					quantity: number,
 					sale_id: number,
 					product_id: number
-				}
+				},
+        user: {
+		      id: number,
+		      name: string,
+		      role: string,
+	      },
+	      seller: {
+		      id: number,
+		      name: string,
+		      role: string,
+	      }
 			},
 		]
 	}
