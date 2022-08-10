@@ -1,55 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Product from '../components/Product';
-import { getProducts, getUser } from '../helpers/fetchAPI';
-import { cleanUserData } from '../helpers/localStore';
+import { getProducts } from '../helpers/fetchAPI';
+import '../App.css';
+import NavBar from '../components/NavBar'; // onde está escrito valor total do carinho tem quem implementar a somatoría do
+// banco de dados,
 
 export default function Products() {
-  // const products = [];
   const [products, setProducts] = useState([]);
-  const [username, setUsername] = useState('User');
   const navigate = useNavigate();
   const getAll = async () => {
-    setUsername(getUser(localStorage.getItem('token')).name);
     const allProducts = await getProducts();
     setProducts(allProducts.data);
-  };
-  const handleLogout = () => {
-    cleanUserData();
-    navigate('/');
   };
   useEffect(() => getAll(), []);
   return (
     <div>
-      <nav>
-        <button
-          type="button"
-          onClick={ () => navigate('/customer/products') }
-          data-testid="customer_products__element-navbar-link-products"
-        >
-          PRODUTOS
-        </button>
-        <button
-          type="button"
-          onClick={ () => navigate('/customer/orders') }
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          MEUS PEDIDOS
-        </button>
-        <button
-          type="button"
-          data-testid="customer_products__element-navbar-user-full-name"
-        >
-          { username }
-        </button>
-        <button
-          type="button"
-          onClick={ handleLogout }
-          data-testid="customer_products__element-navbar-link-logout"
-        >
-          Sair
-        </button>
-      </nav>
+      <NavBar />
       <section>
         {products.map(({ id, name, price, url_image: urlImage }) => (
           <Product
@@ -61,6 +28,15 @@ export default function Products() {
           />
         ))}
       </section>
+      <div id="car-button">
+        <button
+          onClick={ () => navigate('/customer/products') }
+          type="button"
+        >
+          Ver Carrinho: R$
+          valor total do carrinho
+        </button>
+      </div>
     </div>
   );
 }

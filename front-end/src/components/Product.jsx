@@ -6,7 +6,7 @@ export default function Product(props) {
   const [quantity, setQuantity] = useState(0);
   const handleQuantity = ({ target }) => setQuantity(target.value);
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
-  const decreaseQuantity = () => setQuantity((prev) => prev - 1);
+  const decreaseQuantity = () => setQuantity((prev) => ((prev > 0) ? prev - 1 : 0));
   return (
     <div>
       <aside data-testid={ `customer_products__element-card-price-${id}` }>
