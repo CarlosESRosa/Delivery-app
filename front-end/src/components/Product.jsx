@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 export default function Product(props) {
   const { id, name, price, urlImage } = props;
   const [quantity, setQuantity] = useState(0);
-  const handleQuantity = ({ target }) => setQuantity(target.value);
+  const handleQuantity = ({ target }) => setQuantity(Number(target.value));
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
-  const decreaseQuantity = () => setQuantity((prev) => prev - 1);
+  const decreaseQuantity = () => setQuantity((prev) => (prev ? prev - 1 : 0));
   return (
     <div>
       <aside data-testid={ `customer_products__element-card-price-${id}` }>

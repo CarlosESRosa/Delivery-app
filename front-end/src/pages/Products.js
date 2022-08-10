@@ -1,66 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 import Product from '../components/Product';
-import { getProducts, getUser } from '../helpers/fetchAPI';
-import { cleanUserData } from '../helpers/localStore';
+import { getProducts } from '../helpers/fetchAPI';
+import '../App.css';
 
 export default function Products() {
-  // const products = [];
+  // trocar a linha 39 e 42 pelo valor total do carrinho,na linha 42 manter o .toFixed...replace('.', ',')
   const [products, setProducts] = useState([]);
-  const [username, setUsername] = useState('User');
   const navigate = useNavigate();
   const getAll = async () => {
-    setUsername(getUser(localStorage.getItem('token')).name);
     const allProducts = await getProducts();
     setProducts(allProducts.data);
-  };
-  const handleLogout = () => {
-    cleanUserData();
-    navigate('/');
   };
   useEffect(() => getAll(), []);
   return (
     <div>
-      <nav>
-        <button
-          type="button"
-          onClick={ () => navigate('/customer/products') }
-          data-testid="customer_products__element-navbar-link-products"
-        >
-          PRODUTOS
-        </button>
-        <button
-          type="button"
-          onClick={ () => navigate('/customer/orders') }
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          MEUS PEDIDOS
-        </button>
-        <button
-          type="button"
-          data-testid="customer_products__element-navbar-user-full-name"
-        >
-          { username }
-        </button>
-        <button
-          type="button"
-          onClick={ handleLogout }
-          data-testid="customer_products__element-navbar-link-logout"
-        >
-          Sair
-        </button>
-      </nav>
+      <Header isProductPage />
       <section>
         {products.map(({ id, name, price, url_image: urlImage }) => (
           <Product
             key={ id }
             id={ id }
             name={ name }
-            price={ price }
+            price={ price.replace(/\./, ',') }
             urlImage={ urlImage }
           />
         ))}
       </section>
+      <div id="car-button">
+        <button
+          data-testid="customer_products__button-cart"
+          onClick={ () => navigate('/customer/products') }
+          type="button"
+          disabled
+        >
+          Ver Carrinho: R$
+          valor total do carrinho
+        </button>
+        <span data-testid="customer_products__checkout-bottom-value">
+          preçototal.toFixed(2).replace
+        </span>
+      </div>
     </div>
   );
 }

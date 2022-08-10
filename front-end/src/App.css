@@ -23,6 +23,15 @@
   max-height: 80vh;
 }
 
+.car-button{
+  padding:5px;
+  background:#0fa36b;
+  position:fixed;
+  top:90%;
+  left:90%;
+  color: white;
+}
+
 @keyframes shake {
 
   0% {
