@@ -2,7 +2,7 @@ require('dotenv/config');
 const jwt = require('jsonwebtoken');
 const { User } = require('../../database/models');
 
-const secret = process.env.SECRET_KEY || '0pL7pK19ycN76Vcm1bp7WtJdTt%aQDcj';
+const secret = process.env.SECRET_KEY || 'secret_key';
 const config = {
   expiresIn: '8h',
   algorithm: 'HS256',
