@@ -23,6 +23,11 @@
   max-height: 80vh;
 }
 
+/* coloquei esse limite pra visualizar melhor os testes */
+img {
+  max-width: 50px;
+}
+
 .car-button{
   padding:5px;
   background:#0fa36b;
