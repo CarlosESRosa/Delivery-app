@@ -39,9 +39,9 @@ export default function Products() {
       <div id="car-button">
         <button
           data-testid="customer_products__button-cart"
-          onClick={ () => navigate('/customer/products') }
+          onClick={ () => navigate('/customer/checkout') }
           type="button"
-          disabled
+          disabled={ cartTotalPrice === 0 }
         >
           Ver Carrinho: R$
           valor total do carrinho
