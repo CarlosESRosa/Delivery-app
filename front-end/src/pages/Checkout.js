@@ -21,8 +21,8 @@ export default function Checkout() {
           </tr>
           {cart.items ? cart.items.map(({ name, price, value }, index) => (
             <TableCheckout
-              key={ index + 1 }
-              index={ index + 1 }
+              key={ index }
+              index={ index }
               name={ name }
               price={ price }
               value={ value }
