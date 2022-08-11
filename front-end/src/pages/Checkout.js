@@ -34,6 +34,39 @@ export default function Checkout() {
           {cart.total.toFixed(2)}
         </aside>
         <h4>Detalhes de Endereço para Entrega</h4>
+        <form>
+
+          {/*
+        <label htmlFor="">
+          P. vendedora responsavel:
+          <input />
+        </label>
+        */}
+          <label htmlFor="endereco">
+            Endereço
+            <input
+              type="text"
+              name="endereco"
+              data-testid="customer_checkout__input-address"
+              placeholder="Travessa Terceira da Castanheira, Bairro Muruci"
+            />
+          </label>
+          <label htmlFor="numero">
+            Número
+            <input
+              type="text"
+              name="numero"
+              data-testid="customer_checkout__input-addressNumber"
+              placeholder="198"
+            />
+          </label>
+          <button
+            type="button"
+            data-testid="customer_checkout__button-submit-order"
+          >
+            FINALIZAR PEDIDO
+          </button>
+        </form>
 
       </div>
     </div>
