@@ -1,12 +1,32 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { updateCart } from '../helpers/localStore';
 
 export default function Product(props) {
-  const { id, name, price, urlImage } = props;
-  const [quantity, setQuantity] = useState(0);
-  const handleQuantity = ({ target }) => setQuantity(Number(target.value));
-  const increaseQuantity = () => setQuantity((prev) => prev + 1);
-  const decreaseQuantity = () => setQuantity((prev) => (prev ? prev - 1 : 0));
+  const { id, name, price, urlImage, handleCart, prevQuantity } = props;
+  const [quantity, setQuantity] = useState(prevQuantity);
+  const formatPrice = (value) => Number(value.replace(',', '.'));
+  const handleQuantity = ({ target }) => {
+    setQuantity(Number(target.value));
+    const total = updateCart({ id, price: formatPrice(price), value: target.value });
+    handleCart(total);
+  };
+  const increaseQuantity = () => {
+    setQuantity((prev) => {
+      const value = prev + 1;
+      const total = updateCart({ id, price: formatPrice(price), value });
+      handleCart(total);
+      return value;
+    });
+  };
+  const decreaseQuantity = () => {
+    setQuantity((prev) => {
+      const value = prev ? prev - 1 : 0;
+      const total = updateCart({ id, price: formatPrice(price), value });
+      handleCart(total);
+      return value;
+    });
+  };
   return (
     <div>
       <aside data-testid={ `customer_products__element-card-price-${id}` }>
@@ -51,4 +71,6 @@ Product.propTypes = {
   name: PropTypes.string,
   price: PropTypes.number,
   urlImage: PropTypes.string,
+  prevQuantity: PropTypes.number,
+  handleCart: PropTypes.func,
 }.isRequired;
