@@ -19,15 +19,15 @@ export default function Checkout() {
             <td>Sub-total</td>
             <td>Remover item</td>
           </tr>
-          {cart.items.map(({ id, name, price, value }, index) => (
+          {cart.items ? cart.items.map(({ name, price, value }, index) => (
             <TableCheckout
-              key={ index }
-              id={ id }
+              key={ index + 1 }
+              index={ index + 1 }
               name={ name }
               price={ price }
               value={ value }
             />
-          ))}
+          )) : 'test'}
         </table>
         <aside data-testid="customer_checkout__element-order-total-price">
           Total:R$

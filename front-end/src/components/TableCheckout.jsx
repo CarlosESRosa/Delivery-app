@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function TableCheckout({ id, name, price, value }, index) {
-  const identifer = { id };
+export default function TableCheckout({ name, price, value, index }) {
   return (
     <tr>
       <td data-testid={ `customer_checkout__element-order-table-item-number-${index}` }>
@@ -28,7 +27,6 @@ export default function TableCheckout({ id, name, price, value }, index) {
           Remover
         </button>
       </td>
-
     </tr>
   );
 }

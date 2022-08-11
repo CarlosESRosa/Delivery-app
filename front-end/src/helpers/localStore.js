@@ -13,7 +13,7 @@ export const getCart = () => {
   return JSON.parse(cart) || { total: 0, items: [] };
 };
 
-export const updateCart = ({ id, price, value }) => {
+export const updateCart = ({ id, name, price, value }) => {
   // value é a quantidade
   const { items, total } = getCart();
   const otherItems = items.filter((item) => item.id !== id);
@@ -21,7 +21,7 @@ export const updateCart = ({ id, price, value }) => {
   const prevPrice = prevItem ? (prevItem.price * prevItem.value) : 0;
   const totalPrice = total + (price * value) - prevPrice;
   const newCart = {
-    items: [...otherItems, { id, price, value }],
+    items: [...otherItems, { id, price, value, name }],
     total: totalPrice,
   };
   localStorage.setItem('cart', JSON.stringify(newCart));
