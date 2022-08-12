@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import formatCurrency from '../helpers/formatCurrency';
 
-export default function TableCheckout({ name, price, value, index }) {
+export default function TableCheckout({ id, name, price, value, index, removerProduto }) {
   return (
     <tr>
       <td data-testid={ `customer_checkout__element-order-table-item-number-${index}` }>
@@ -14,15 +15,16 @@ export default function TableCheckout({ name, price, value, index }) {
         {value}
       </td>
       <td data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }>
-        {price.toFixed(2)}
+        {formatCurrency(price.toFixed(2))}
       </td>
       <td data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }>
-        {price * value.toFixed(2)}
+        {formatCurrency(price * value)}
       </td>
       <td>
         <button
           type="button"
           data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+          onClick={ () => removerProduto(id) }
         >
           Remover
         </button>
@@ -33,7 +35,9 @@ export default function TableCheckout({ name, price, value, index }) {
 
 TableCheckout.propTypes = {
   id: PropTypes.number,
+  index: PropTypes.number,
   name: PropTypes.string,
   price: PropTypes.number,
   value: PropTypes.number,
+  removerProduto: PropTypes.func,
 }.isRequired;
