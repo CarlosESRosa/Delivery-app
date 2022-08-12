@@ -12,5 +12,6 @@ router.get('/me', validateToken, rescue(User.findById));
 router.post('/', nameValidation, emailValidation, passwordValidation, rescue(User.create));
 router.post('/admin', validateToken, nameValidation, emailValidation, passwordValidation,
   rescue(User.createWithRole));
+router.get('/seller', rescue(User.findSellers));
 
 module.exports = router;

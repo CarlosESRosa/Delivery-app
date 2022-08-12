@@ -41,4 +41,10 @@ const findById = async (req, res) => {
   return res.status(200).json(data);
 };
 
-module.exports = { create, createWithRole, findById, login };
+const findSellers = async (req, res) => {
+  const data = await User.findAllSellers();
+
+  return res.status(200).json(data);
+};
+
+module.exports = { create, createWithRole, findById, findSellers, login };

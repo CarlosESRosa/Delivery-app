@@ -60,4 +60,6 @@ const login = async (email, password) => {
   return user;
 };
 
-module.exports = { create, createWithRole, findById, findByField, login };
+const findAllSellers = () => User.findAll({ where: { role: 'seller' } });
+
+module.exports = { create, createWithRole, findById, findByField, findAllSellers, login };
