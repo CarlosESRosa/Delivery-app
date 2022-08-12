@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import formatCurrency from '../helpers/formatCurrency';
 
 export default function OrderDetailsTable({ products }) {
   const INDEX = 'customer_order_details__element-order-table-item-number-';
@@ -34,19 +35,10 @@ export default function OrderDetailsTable({ products }) {
                 {product.SaleProduct.quantity}
               </td>
               <td data-testid={ `${PRICE}${index}` }>
-                { product.price.toLocaleString('pt-br', {
-                  style: 'currency',
-                  currency: 'BRL',
-                }) }
+                { formatCurrency(product.price) }
               </td>
               <td data-testid={ `${SUB_TOTAL}${index}` }>
-                { (product.price * product.SaleProduct.quantity).toLocaleString(
-                  'pr-br',
-                  {
-                    style: 'currency',
-                    currency: 'BRL',
-                  },
-                ) }
+                { formatCurrency(product.price * product.SaleProduct.quantity) }
               </td>
             </tr>
           ))

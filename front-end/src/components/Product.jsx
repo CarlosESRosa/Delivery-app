@@ -8,13 +8,15 @@ export default function Product(props) {
   const formatPrice = (value) => Number(value.replace(',', '.'));
   const handleQuantity = ({ target }) => {
     setQuantity(Number(target.value));
-    const total = updateCart({ id, price: formatPrice(price), value: target.value });
+    const total = updateCart(
+      { id, name, price: formatPrice(price), value: target.value },
+    );
     handleCart(total);
   };
   const increaseQuantity = () => {
     setQuantity((prev) => {
       const value = prev + 1;
-      const total = updateCart({ id, price: formatPrice(price), value });
+      const total = updateCart({ id, name, price: formatPrice(price), value });
       handleCart(total);
       return value;
     });

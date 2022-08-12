@@ -76,3 +76,23 @@ export const updateSaleStatus = async (token, id, status) => {
   const res = await axios.put(baseURL + url, config);
   return res;
 };
+
+export const getSellers = async () => {
+  const url = '/user/seller';
+  const res = await axios(baseURL + url);
+  return res;
+};
+
+export const saveSale = async (token, sale) => {
+  const url = '/sale';
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+    body: {
+      sale,
+    },
+  };
+  const res = await axios.post(baseURL + url, config);
+  return res;
+};
