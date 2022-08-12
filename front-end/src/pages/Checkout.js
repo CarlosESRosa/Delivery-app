@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import TableCheckout from '../components/TableCheckout';
 import { getSellers, getUser, saveSale } from '../helpers/fetchAPI';
-import formatCurrency from '../helpers/formatCurrency';
 import { getCart, getLocalUser, removeItem } from '../helpers/localStore';
 
 export default function Checkout() {
@@ -25,7 +24,7 @@ export default function Checkout() {
       deliveryNumber: number,
       sellerId: seller,
       userId: user.id,
-      totalPrice: cart.total.toFixed(2),
+      totalPrice: cart.total,
       products: getCart().items,
     };
 
@@ -67,7 +66,7 @@ export default function Checkout() {
         </table>
         <aside data-testid="customer_checkout__element-order-total-price">
           Total:
-          {formatCurrency(cart.total.toFixed(2))}
+          {cart.total.toFixed(2).toString().replace('.', ',')}
         </aside>
         <h4>Detalhes de Endereço para Entrega</h4>
         <form>
