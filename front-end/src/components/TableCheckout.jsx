@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import formatCurrency from '../helpers/formatCurrency';
 
 export default function TableCheckout({ id, name, price, value, index, removerProduto }) {
   return (
@@ -15,10 +14,10 @@ export default function TableCheckout({ id, name, price, value, index, removerPr
         {value}
       </td>
       <td data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }>
-        {formatCurrency(price.toFixed(2))}
+        {price.replace(/\./, ',')}
       </td>
       <td data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }>
-        {formatCurrency(price * value)}
+        {(price * value).toFixed(2).replace(/\./, ',')}
       </td>
       <td>
         <button

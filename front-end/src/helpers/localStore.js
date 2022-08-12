@@ -19,10 +19,10 @@ export const updateCart = ({ id, name, price, value }) => {
   const otherItems = items.filter((item) => item.id !== id);
   const prevItem = items.find((item) => item.id === id);
   const prevPrice = prevItem ? (prevItem.price * prevItem.value) : 0;
-  const totalPrice = total + (price * value) - prevPrice;
+  const totalPrice = (total + (price * value) - prevPrice).toFixed(2);
   const newCart = {
     items: [...otherItems, { id, price, value, name }],
-    total: totalPrice,
+    total: parseFloat(totalPrice),
   };
   localStorage.setItem('cart', JSON.stringify(newCart));
   return totalPrice;

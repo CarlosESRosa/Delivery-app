@@ -5,18 +5,17 @@ import { updateCart } from '../helpers/localStore';
 export default function Product(props) {
   const { id, name, price, urlImage, handleCart, prevQuantity } = props;
   const [quantity, setQuantity] = useState(prevQuantity);
-  const formatPrice = (value) => Number(value.replace(',', '.'));
   const handleQuantity = ({ target }) => {
     setQuantity(Number(target.value));
     const total = updateCart(
-      { id, name, price: formatPrice(price), value: target.value },
+      { id, name, price, value: target.value },
     );
     handleCart(total);
   };
   const increaseQuantity = () => {
     setQuantity((prev) => {
       const value = prev + 1;
-      const total = updateCart({ id, name, price: formatPrice(price), value });
+      const total = updateCart({ id, name, price, value });
       handleCart(total);
       return value;
     });
@@ -24,7 +23,7 @@ export default function Product(props) {
   const decreaseQuantity = () => {
     setQuantity((prev) => {
       const value = prev ? prev - 1 : 0;
-      const total = updateCart({ id, price: formatPrice(price), value });
+      const total = updateCart({ id, name, price, value });
       handleCart(total);
       return value;
     });
@@ -32,7 +31,7 @@ export default function Product(props) {
   return (
     <div>
       <aside data-testid={ `customer_products__element-card-price-${id}` }>
-        { price }
+        { price.replace(/\./, ',') }
       </aside>
       <section>
         <img
