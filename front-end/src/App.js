@@ -19,6 +19,7 @@ function App() {
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
         <Route exact path="/customer/orders" element={ <Orders /> } />
         <Route exact path="/customer/orders/:id" element={ <Order /> } />
+        <Route exact path="/seller/orders" element={ <Orders /> } />
       </Switch>
     </BrowserRouter>
   );

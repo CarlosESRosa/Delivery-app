@@ -39,3 +39,10 @@ export const cleanUserData = () => {
   localStorage.setItem('user', '');
   localStorage.setItem('cart', '');
 };
+
+export const removeItem = (id) => {
+  const cart = localStorage.getItem('cart');
+  const newItems = cart.items.filter((item) => item.id !== id);
+  cart.items = newItems;
+  localStorage.setItem('cart', cart);
+};
