@@ -11,6 +11,8 @@ const config = {
 const validateToken = async (req, res, next) => {
   const { authorization: token } = req.headers;
 
+  console.log(token);
+
   if (!token) return res.status(401).json({ error: { message: 'Token não encontrado.' } });
 
   try {

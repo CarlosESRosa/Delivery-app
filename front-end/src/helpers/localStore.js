@@ -41,8 +41,10 @@ export const cleanUserData = () => {
 };
 
 export const removeItem = (id) => {
-  const cart = localStorage.getItem('cart');
+  const cart = JSON.parse(localStorage.getItem('cart'));
+  const product = cart.items.find((item) => item.id === id);
+  cart.total -= (product.price * product.value);
   const newItems = cart.items.filter((item) => item.id !== id);
   cart.items = newItems;
-  localStorage.setItem('cart', cart);
+  localStorage.setItem('cart', JSON.stringify(cart));
 };
