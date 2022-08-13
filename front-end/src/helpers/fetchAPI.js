@@ -69,11 +69,8 @@ export const updateSaleStatus = async (token, id, status) => {
     headers: {
       Authorization: token,
     },
-    body: {
-      status,
-    },
   };
-  const res = await axios.put(baseURL + url, config);
+  const res = await axios.put(baseURL + url, { status }, config);
   return res;
 };
 
