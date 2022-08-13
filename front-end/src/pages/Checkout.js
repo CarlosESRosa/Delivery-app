@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import TableCheckout from '../components/TableCheckout';
-import { getSellers, getUser, saveSale } from '../helpers/fetchAPI';
+import { getSellers, saveSale } from '../helpers/fetchAPI';
 import { getCart, getLocalUser, removeItem } from '../helpers/localStore';
 
 export default function Checkout() {
@@ -10,28 +11,30 @@ export default function Checkout() {
   const [number, setNumber] = useState();
   const [sellers, setSellers] = useState([]);
   const [seller, setSeller] = useState();
-
-  const getAllSellers = async () => {
-    const res = await getSellers();
-    setSellers(res.data);
-  };
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const user = await getUser(getLocalUser().token);
-
     const sale = {
       deliveryAddress: address,
       deliveryNumber: number,
       sellerId: seller,
-      userId: user.id,
       totalPrice: cart.total,
       products: getCart().items,
     };
 
-    await saveSale(getLocalUser().token, sale);
+    const data = await saveSale(getLocalUser().token, sale);
+    navigate(`/customer/orders/${data.data.id}`);
   };
 
-  useEffect(() => getAllSellers());
+  useEffect(() => {
+    const getAllSellers = async () => {
+      const res = await getSellers();
+      setSellers(res.data);
+      setSeller(res.data[0].id);
+    };
+
+    getAllSellers();
+  }, []);
 
   const removeProduct = (id) => {
     removeItem(id);
@@ -76,7 +79,6 @@ export default function Checkout() {
               data-testid="customer_checkout__select-seller"
               id="select-seller"
               onChange={ (e) => setSeller(e.target.value) }
-              value={ seller }
             >
               {
                 sellers.length > 0 && (

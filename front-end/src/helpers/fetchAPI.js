@@ -83,16 +83,14 @@ export const getSellers = async () => {
   return res;
 };
 
-export const saveSale = async (token, sale) => {
+export const saveSale = async (token, data) => {
   const url = '/sale';
   const config = {
     headers: {
       Authorization: token,
     },
-    body: {
-      sale,
-    },
   };
-  const res = await axios.post(baseURL + url, config);
+  console.log(config);
+  const res = await axios.post(baseURL + url, data, config);
   return res;
 };

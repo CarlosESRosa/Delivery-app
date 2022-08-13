@@ -9,6 +9,8 @@ const create = async (req, res, next) => {
 
   if (sale.error) return next(sale.error);
   
+  console.log('passou');
+
   return res.status(201).json(sale);
 };
 
