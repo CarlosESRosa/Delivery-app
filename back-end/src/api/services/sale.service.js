@@ -8,14 +8,15 @@ const create = async (data) => {
 
   const sale = await Sale.create(saleData);
 
-  products.forEach(async (product) => {
+  const promises = products.map((product) => {
     SaleProduct.create({
       saleId: sale.id,
       productId: product.id,
-      quantity: product.quantity,
+      quantity: product.value,
     });
   });
 
+  await Promise.all(promises);
   return sale;
 };
 
