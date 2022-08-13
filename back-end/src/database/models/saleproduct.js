@@ -4,7 +4,7 @@ const SaleProduct = (sequelize, DataTypes) => {
     productId: { foreignKey: true, primaryKey: true,  type: DataTypes.INTEGER },
     quantity: DataTypes.INTEGER,
   }, {
-    tableName: 'salesProducts',
+    tableName: 'sales_products',
     timestamps: false,
     underscored: true
   });
