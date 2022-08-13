@@ -8,13 +8,11 @@ const create = async (data) => {
 
   const sale = await Sale.create(saleData);
 
-  const promises = products.map((product) => {
-    SaleProduct.create({
-      saleId: sale.id,
-      productId: product.id,
-      quantity: product.value,
-    });
-  });
+  const promises = products.map((product) => SaleProduct.create({
+    saleId: sale.id,
+    productId: product.id,
+    quantity: product.value,
+  }));
 
   await Promise.all(promises);
   return sale;
