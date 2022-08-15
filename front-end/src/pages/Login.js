@@ -21,7 +21,10 @@ function Login() {
       const { id, ...userData } = userResponse.data;
 
       saveUser({ ...userData, token: tokenResponse.data.token });
-      navigate('/customer/products');
+      const route = userResponse.data.role === 'customer'
+        ? '/customer/products'
+        : '/seller/orders';
+      navigate(route);
     } catch (error) {
       setIsInvalidLogin(true);
       console.log(error);
@@ -32,15 +35,16 @@ function Login() {
       try {
         const user = getLocalUser();
         const apiResponse = await getUser(user.token);
-        if (apiResponse.data) {
-          navigate('/customer/products');
-        }
+        const route = apiResponse.data.role === 'customer'
+          ? '/customer/products'
+          : '/seller/orders';
+        navigate(route);
       } catch (error) {
         console.log(error.message);
       }
     }
     validateToken();
-  }, [navigate]);
+  }, []);
 
   const isEmailValid = email.includes('.') && email.includes('@');
 
