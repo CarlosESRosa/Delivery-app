@@ -18,9 +18,9 @@ function Order() {
     updateSaleStatus(getLocalUser().token, id, 'Entregue');
   };
 
-  useEffect(() => getData());
+  useEffect(() => getData(), []);
 
-  const LABEL_ORDER_TEST_ID = 'customer_order_details__element-order-details-label-order';
+  const LABEL_OR_TEST_ID = 'customer_order_details__element-order-details-label-order-id';
   const LABEL_NAME = 'customer_order_details__element-order-details-label-seller-name';
   const LABEL_DATE = 'customer_order_details__element-order-details-label-order-date';
   const STATUS = 'customer_order_details__element-order-details-label-delivery-status';
@@ -32,12 +32,51 @@ function Order() {
       <Header />
       <main>
         <h2>Detalhe do pedido</h2>
+        {saleData.seller && (
+          <section>
+            <header>
+              <p data-testid={ `${LABEL_OR_TEST_ID}${id}` }>
+                { `PEDIDO ${saleData.id}` }
+              </p>
+              <p data-testid={ LABEL_NAME }>
+                { `P. Vend: ${saleData.seller.name}` }
+              </p>
+
+              <p data-testid={ LABEL_DATE }>
+                { new Date(saleData.saleData).toLocaleDateString() }
+              </p>
+
+              <p data-testid={ STATUS }>
+                { saleData.status }
+              </p>
+
+              <button
+                data-testid={ LABEL_CHECK }
+                onClick={ handleCheck }
+                type="button"
+              >
+                Marcar como entregue
+              </button>
+            </header>
+
+            <OrderDetailsTable products={ saleData.sales } />
+
+            <h3 data-testid={ TOTAL_PRICE }>
+              { `Total: ${saleData.totalPrice.toLocaleString('pt-br', {
+                style: 'currency',
+                currency: 'BRL',
+              })}` }
+            </h3>
+          </section>
+        )}
+        ;
+        {/*
+
         <section>
           <header>
             <p data-testid={ `${LABEL_ORDER_TEST_ID}${id}` }>
               { `PEDIDO ${saleData.id}` }
             </p>
-
             <p data-testid={ LABEL_NAME }>
               { `P. Vend: ${saleData.seller.name}` }
             </p>
@@ -68,6 +107,7 @@ function Order() {
             })}` }
           </h3>
         </section>
+        */}
       </main>
     </>
   );
