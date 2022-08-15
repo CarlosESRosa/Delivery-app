@@ -18,9 +18,9 @@ function Order() {
     updateSaleStatus(getLocalUser().token, id, 'Entregue');
   };
 
-  useEffect(() => getData());
+  useEffect(() => getData(), []);
 
-  const LABEL_ORDER_TEST_ID = 'customer_order_details__element-order-details-label-order';
+  const LABEL_OR_TEST_ID = 'customer_order_details__element-order-details-label-order-id';
   const LABEL_NAME = 'customer_order_details__element-order-details-label-seller-name';
   const LABEL_DATE = 'customer_order_details__element-order-details-label-order-date';
   const STATUS = 'customer_order_details__element-order-details-label-delivery-status';
@@ -32,42 +32,42 @@ function Order() {
       <Header />
       <main>
         <h2>Detalhe do pedido</h2>
-        <section>
-          <header>
-            <p data-testid={ `${LABEL_ORDER_TEST_ID}${id}` }>
-              { `PEDIDO ${saleData.id}` }
-            </p>
+        {saleData.seller && (
+          <section>
+            <header>
+              <p data-testid={ `${LABEL_OR_TEST_ID}${id}` }>
+                { `PEDIDO ${saleData.id}` }
+              </p>
+              <p data-testid={ LABEL_NAME }>
+                { `P. Vend: ${saleData.seller.name}` }
+              </p>
 
-            <p data-testid={ LABEL_NAME }>
-              { `P. Vend: ${saleData.seller.name}` }
-            </p>
+              <p data-testid={ LABEL_DATE }>
+                { new Date(saleData.saleDate).toLocaleDateString('pt-br') }
+              </p>
 
-            <p data-testid={ LABEL_DATE }>
-              { new Date(sale.saleDate).toLocaleDateString() }
-            </p>
+              <p data-testid={ STATUS }>
+                { saleData.status }
+              </p>
 
-            <p data-testid={ STATUS }>
-              { saleData.status }
-            </p>
+              <button
+                data-testid={ LABEL_CHECK }
+                onClick={ handleCheck }
+                disabled
+                type="button"
+              >
+                Marcar como entregue
+              </button>
+            </header>
 
-            <button
-              data-testid={ LABEL_CHECK }
-              onClick={ handleCheck }
-              type="button"
-            >
-              Marcar como entregue
-            </button>
-          </header>
+            <OrderDetailsTable products={ saleData.sales } />
 
-          <OrderDetailsTable products={ saleData.sales } />
+            <h3 data-testid={ TOTAL_PRICE }>
+              { saleData.totalPrice.toString().replace('.', ',') }
+            </h3>
+          </section>
+        )}
 
-          <h3 data-testid={ TOTAL_PRICE }>
-            { `Total: ${saleData.totalPrice.toLocaleString('pt-br', {
-              style: 'currency',
-              currency: 'BRL',
-            })}` }
-          </h3>
-        </section>
       </main>
     </>
   );

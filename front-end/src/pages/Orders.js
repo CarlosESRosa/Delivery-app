@@ -25,7 +25,7 @@ function Orders() {
       {
         sales.length > 0 && (
           sales.map((sale) => {
-            const date = new Date(sale.saleDate).toLocaleDateString();
+            const date = new Date(sale.saleDate).toLocaleDateString('pt-br');
             const price = sale.totalPrice.toLocaleString('pr-br', {
               style: 'currency',
               currency: 'BRL',
