@@ -44,7 +44,7 @@ function Login() {
       }
     }
     validateToken();
-  }, []);
+  }, [navigate]);
 
   const isEmailValid = email.includes('.') && email.includes('@');
 

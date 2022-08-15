@@ -9,16 +9,16 @@ function Order() {
   const [saleData, setSaleData] = useState({});
   const { id } = useParams();
 
+  const handleCheck = () => {
+    updateSaleStatus(getLocalUser().token, id, 'Entregue');
+  };
+
   const getData = async () => {
     const response = await getSaleById(getLocalUser().token, id);
     setSaleData(response.data);
   };
 
-  const handleCheck = () => {
-    updateSaleStatus(getLocalUser().token, id, 'Entregue');
-  };
-
-  useEffect(() => getData(), []);
+  useEffect(() => getData());
 
   const LABEL_OR_TEST_ID = 'customer_order_details__element-order-details-label-order-id';
   const LABEL_NAME = 'customer_order_details__element-order-details-label-seller-name';
