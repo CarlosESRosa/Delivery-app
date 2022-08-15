@@ -43,7 +43,7 @@ function Order() {
               </p>
 
               <p data-testid={ LABEL_DATE }>
-                { new Date(saleData.saleData).toLocaleDateString() }
+                { new Date(saleData.saleDate).toLocaleDateString('pt-br') }
               </p>
 
               <p data-testid={ STATUS }>
@@ -53,6 +53,7 @@ function Order() {
               <button
                 data-testid={ LABEL_CHECK }
                 onClick={ handleCheck }
+                disabled
                 type="button"
               >
                 Marcar como entregue
@@ -62,52 +63,11 @@ function Order() {
             <OrderDetailsTable products={ saleData.sales } />
 
             <h3 data-testid={ TOTAL_PRICE }>
-              { `Total: ${saleData.totalPrice.toLocaleString('pt-br', {
-                style: 'currency',
-                currency: 'BRL',
-              })}` }
+              { saleData.totalPrice.toString().replace('.', ',') }
             </h3>
           </section>
         )}
-        ;
-        {/*
 
-        <section>
-          <header>
-            <p data-testid={ `${LABEL_ORDER_TEST_ID}${id}` }>
-              { `PEDIDO ${saleData.id}` }
-            </p>
-            <p data-testid={ LABEL_NAME }>
-              { `P. Vend: ${saleData.seller.name}` }
-            </p>
-
-            <p data-testid={ LABEL_DATE }>
-              { new Date(sale.saleDate).toLocaleDateString() }
-            </p>
-
-            <p data-testid={ STATUS }>
-              { saleData.status }
-            </p>
-
-            <button
-              data-testid={ LABEL_CHECK }
-              onClick={ handleCheck }
-              type="button"
-            >
-              Marcar como entregue
-            </button>
-          </header>
-
-          <OrderDetailsTable products={ saleData.sales } />
-
-          <h3 data-testid={ TOTAL_PRICE }>
-            { `Total: ${saleData.totalPrice.toLocaleString('pt-br', {
-              style: 'currency',
-              currency: 'BRL',
-            })}` }
-          </h3>
-        </section>
-        */}
       </main>
     </>
   );
