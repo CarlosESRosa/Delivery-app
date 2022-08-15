@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { pMinLength } from '../helpers/constants';
 import { getUser, login } from '../helpers/fetchAPI';
-import { saveUser } from '../helpers/localStore';
+import { getLocalUser, saveUser } from '../helpers/localStore';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -27,6 +27,20 @@ function Login() {
       console.log(error);
     }
   };
+  useEffect(() => {
+    async function validateToken() {
+      try {
+        const user = getLocalUser();
+        const apiResponse = await getUser(user.token);
+        if (apiResponse.data) {
+          navigate('/customer/products');
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    validateToken();
+  }, [navigate]);
 
   const isEmailValid = email.includes('.') && email.includes('@');
 
