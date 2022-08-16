@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getLocalUser } from '../helpers/localStore';
 import Header from '../components/Header';
-import { getSaleById } from '../helpers/fetchAPI';
+import { getSaleById, updateSaleStatus } from '../helpers/fetchAPI';
 import SellerOrderDetailsTable from '../components/SellerOrderDetailsTable';
 
 function SellerOrder() {
@@ -19,9 +19,11 @@ function SellerOrder() {
     setSaleData(response.data);
   };
 
-  const handleCheck = () => {
-    // updateSaleStatus(getLocalUser().token, id, 'Entregue');
-    console.log('feature pendente');
+  const handleCheck = (message) => {
+    // console.log('token', getLocalUser().token);
+    // console.log('id', id);
+    // to fix request
+    updateSaleStatus(getLocalUser().token, id, message);
   };
 
   useEffect(() => getData(), []);
@@ -53,7 +55,8 @@ function SellerOrder() {
 
             <button
               data-testid={ LABEL_CHECK }
-              onClick={ handleCheck }
+              onClick={ () => handleCheck('Preparando') }
+              disabled={ saleData.status !== 'Pendente' }
               type="button"
             >
               PREPARAR PEDIDO
@@ -61,8 +64,8 @@ function SellerOrder() {
 
             <button
               data-testid={ DISPATCH_LABEL }
-              onClick={ handleCheck }
-              disabled
+              onClick={ () => handleCheck('Em transito') }
+              disabled={ saleData.status !== 'Preparando' }
               type="button"
             >
               SAIU PARA ENTREGA
