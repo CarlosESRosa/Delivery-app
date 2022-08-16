@@ -8,12 +8,19 @@ export default function Header(props) {
   // Nas páginas em que o botão "produtos" não aparece,
   // ...é só não colocar a prop isProductPage (ou colocar como false).
   const [username, setUsername] = useState('User');
+  const [ordersPath, setOrdersPath] = useState('/customer/orders');
   const navigate = useNavigate();
   const handleLogout = () => {
     cleanUserData();
     navigate('/');
   };
   useEffect(() => setUsername(getLocalUser().name), []);
+  useEffect(() => {
+    const userInfo = getLocalUser();
+    if (userInfo && userInfo.role === 'seller') {
+      setOrdersPath('/seller/orders');
+    }
+  }, [username]);
   return (
     <header>
       { isProductPage
@@ -28,7 +35,7 @@ export default function Header(props) {
         )}
       <button
         type="button"
-        onClick={ () => navigate('/customer/orders') }
+        onClick={ () => navigate(ordersPath) }
         data-testid="customer_products__element-navbar-link-orders"
       >
         MEUS PEDIDOS
