@@ -20,9 +20,6 @@ function SellerOrder() {
   };
 
   const handleCheck = (message) => {
-    // console.log('token', getLocalUser().token);
-    // console.log('id', id);
-    // to fix request
     updateSaleStatus(getLocalUser().token, id, message);
   };
 
@@ -64,7 +61,7 @@ function SellerOrder() {
 
             <button
               data-testid={ DISPATCH_LABEL }
-              onClick={ () => handleCheck('Em transito') }
+              onClick={ () => handleCheck('Em Trânsito') }
               disabled={ saleData.status !== 'Preparando' }
               type="button"
             >

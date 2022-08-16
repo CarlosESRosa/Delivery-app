@@ -50,23 +50,21 @@ const findById = async (userId, role, saleId) => {
 
 const validateStatus = (userRole) => {
   const status = {
-    seller: ['Preparando', 'Em Trânsito', 'Entregue'],
-    customer: ['Entregue'],
+    seller: ['Preparando', 'Pendente'],
+    customer: ['Em Trânsito'],
   };
   
-  return !(
+  return (
     (userRole === 'seller' && !status.seller.includes(status))
     || (userRole === 'customer' && !status.customer.includes(status))
   );
 };
 
 const update = async (saleId, userId, userRole, status) => {
-  const sale = await Sale.findByPk(saleId);
-
+  const sale = await Sale.findByPk(saleId, {raw: true});
   if (!sale) return { error: ERRORS.NotFound };
 
-  if (sale.userId || sale.sellerId !== userId) return { error: ERRORS.Conflict };
-
+  if (sale.userId != userId && sale.sellerId != userId) return { error: ERRORS.Conflict };
   if (!validateStatus(userRole)) return { error: ERRORS.Conflict };
   
   await Sale.update({ status }, { where: { id: saleId } });
