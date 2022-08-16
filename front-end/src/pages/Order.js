@@ -20,7 +20,6 @@ function Order() {
 
   useEffect(() => getData(), []);
   useEffect(() => getData(), [saleData]);
-  // commit teste
   const LABEL_OR_TEST_ID = 'customer_order_details__element-order-details-label-order-id';
   const LABEL_NAME = 'customer_order_details__element-order-details-label-seller-name';
   const LABEL_DATE = 'customer_order_details__element-order-details-label-order-date';
