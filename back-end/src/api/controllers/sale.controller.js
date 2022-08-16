@@ -33,7 +33,7 @@ const findById = async (req, res, next) => {
 };
 
 const update = async (req, res, next) => {
-  const { user: {  id: userId, role }, params: { id } , body: { status } } = req;
+  const { user: { id: userId, role }, params: { id }, body: { status } } = req;
 
   const sale = await Sale.update(id, userId, role, status);
   
