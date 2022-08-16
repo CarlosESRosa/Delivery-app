@@ -49,7 +49,7 @@ export default function Order({
               : `customer_orders__element-card-price-${id}`
           }
         >
-          { totalPrice }
+          { totalPrice.replace(/\./, ',') }
         </section>
 
         {
