@@ -24,7 +24,7 @@ function SellerOrder() {
     console.log('feature pendente');
   };
 
-  useEffect(() => getData());
+  useEffect(() => getData(), []);
 
   const FIRST_TEST_ID = 'seller_order_details__element-order-details-label-order-id';
   const DISPATCH_LABEL = 'seller_order_details__button-dispatch-check';
@@ -43,10 +43,8 @@ function SellerOrder() {
             <p data-testid={ FIRST_TEST_ID }>
               { `PEDIDO ${saleData.id}` }
             </p>
-
             <p data-testid={ LABEL_DATE }>
-              {/* { new Date(sale.saleDate).toLocaleDateString() } */}
-              11/11/2011
+              {new Date(saleData.saleDate).toLocaleDateString('pt-br')}
             </p>
 
             <p data-testid={ STATUS }>
@@ -64,6 +62,7 @@ function SellerOrder() {
             <button
               data-testid={ DISPATCH_LABEL }
               onClick={ handleCheck }
+              disabled
               type="button"
             >
               SAIU PARA ENTREGA
@@ -73,10 +72,7 @@ function SellerOrder() {
           <SellerOrderDetailsTable products={ saleData.sales } />
 
           <h3 data-testid={ TOTAL_PRICE }>
-            { `Total: ${saleData.totalPrice.toLocaleString('pt-br', {
-              style: 'currency',
-              currency: 'BRL',
-            })}` }
+            { saleData.totalPrice.toString().replace('.', ',') }
           </h3>
         </section>
       </main>
