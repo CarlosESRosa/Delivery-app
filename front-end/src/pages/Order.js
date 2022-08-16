@@ -18,8 +18,8 @@ function Order() {
     setSaleData(response.data);
   };
 
-  useEffect(() => getData());
-
+  useEffect(() => getData(), []);
+  useEffect(() => getData(), [saleData]);
   const LABEL_OR_TEST_ID = 'customer_order_details__element-order-details-label-order-id';
   const LABEL_NAME = 'customer_order_details__element-order-details-label-seller-name';
   const LABEL_DATE = 'customer_order_details__element-order-details-label-order-date';
@@ -53,7 +53,7 @@ function Order() {
               <button
                 data-testid={ LABEL_CHECK }
                 onClick={ handleCheck }
-                disabled
+                disabled={ saleData.status !== 'Em Trânsito' }
                 type="button"
               >
                 Marcar como entregue

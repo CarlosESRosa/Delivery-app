@@ -33,10 +33,10 @@ const findById = async (req, res, next) => {
 };
 
 const update = async (req, res, next) => {
-  const { user: { role }, params: { id }, body: { status } } = req;
+  const { user: { id: userId, role }, params: { id }, body: { status } } = req;
 
-  const sale = await Sale.update(id, role, status);
-
+  const sale = await Sale.update(id, userId, role, status);
+  
   if (sale.error) return next(sale.error);
 
   return res.status(200).json(sale);

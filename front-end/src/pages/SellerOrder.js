@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getLocalUser } from '../helpers/localStore';
 import Header from '../components/Header';
-import { getSaleById } from '../helpers/fetchAPI';
+import { getSaleById, updateSaleStatus } from '../helpers/fetchAPI';
 import SellerOrderDetailsTable from '../components/SellerOrderDetailsTable';
 
 function SellerOrder() {
@@ -19,12 +19,12 @@ function SellerOrder() {
     setSaleData(response.data);
   };
 
-  const handleCheck = () => {
-    // updateSaleStatus(getLocalUser().token, id, 'Entregue');
-    console.log('feature pendente');
+  const handleCheck = (message) => {
+    updateSaleStatus(getLocalUser().token, id, message);
   };
 
-  useEffect(() => getData());
+  useEffect(() => getData(), []);
+  useEffect(() => getData(), [saleData]);
 
   const FIRST_TEST_ID = 'seller_order_details__element-order-details-label-order-id';
   const DISPATCH_LABEL = 'seller_order_details__button-dispatch-check';
@@ -43,10 +43,8 @@ function SellerOrder() {
             <p data-testid={ FIRST_TEST_ID }>
               { `PEDIDO ${saleData.id}` }
             </p>
-
             <p data-testid={ LABEL_DATE }>
-              {/* { new Date(sale.saleDate).toLocaleDateString() } */}
-              11/11/2011
+              {new Date(saleData.saleDate).toLocaleDateString('pt-br')}
             </p>
 
             <p data-testid={ STATUS }>
@@ -55,7 +53,8 @@ function SellerOrder() {
 
             <button
               data-testid={ LABEL_CHECK }
-              onClick={ handleCheck }
+              onClick={ () => handleCheck('Preparando') }
+              disabled={ saleData.status !== 'Pendente' }
               type="button"
             >
               PREPARAR PEDIDO
@@ -63,7 +62,8 @@ function SellerOrder() {
 
             <button
               data-testid={ DISPATCH_LABEL }
-              onClick={ handleCheck }
+              onClick={ () => handleCheck('Em Trânsito') }
+              disabled={ saleData.status !== 'Preparando' }
               type="button"
             >
               SAIU PARA ENTREGA
@@ -73,10 +73,7 @@ function SellerOrder() {
           <SellerOrderDetailsTable products={ saleData.sales } />
 
           <h3 data-testid={ TOTAL_PRICE }>
-            { `Total: ${saleData.totalPrice.toLocaleString('pt-br', {
-              style: 'currency',
-              currency: 'BRL',
-            })}` }
+            { saleData.totalPrice.toString().replace('.', ',') }
           </h3>
         </section>
       </main>
