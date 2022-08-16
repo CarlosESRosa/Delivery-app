@@ -24,6 +24,7 @@ function SellerOrder() {
   };
 
   useEffect(() => getData(), []);
+  useEffect(() => getData(), [saleData]);
 
   const FIRST_TEST_ID = 'seller_order_details__element-order-details-label-order-id';
   const DISPATCH_LABEL = 'seller_order_details__button-dispatch-check';
