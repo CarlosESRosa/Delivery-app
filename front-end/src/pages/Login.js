@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { pMinLength } from '../helpers/constants';
 import { getUser, login } from '../helpers/fetchAPI';
 import { getLocalUser, saveUser } from '../helpers/localStore';
+import '../styles/pages/Login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -49,8 +50,8 @@ function Login() {
   const isEmailValid = email.includes('.') && email.includes('@');
 
   return (
-    <>
-      <form>
+    <div className="page-login">
+      <form className="login-form">
         <input
           type="email"
           data-testid="common_login__input-email"
@@ -66,6 +67,7 @@ function Login() {
           onChange={ (event) => handleChange(event, setPassword) }
         />
         <button
+          className="default-button default-primary-button"
           type="button"
           data-testid="common_login__button-login"
           onClick={ handleLogin }
@@ -74,6 +76,7 @@ function Login() {
           LOGIN
         </button>
         <button
+          className="default-button default-secondary-button"
           type="button"
           data-testid="common_login__button-register"
           onClick={ () => navigate('../register') }
@@ -83,8 +86,7 @@ function Login() {
       </form>
       {isInvalidLogin
         && <p data-testid="common_login__element-invalid-email">Login invalido 404</p>}
-    </>
-
+    </div>
   );
 }
 
