@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { cleanUserData, getLocalUser } from '../helpers/localStore';
+import '../styles/components/Header.css';
 
 export default function Header(props) {
   const { isProductPage } = props;
@@ -22,37 +23,42 @@ export default function Header(props) {
     }
   }, [username]);
   return (
-    <header>
-      { isProductPage
-        && (
-          <button
-            type="button"
-            onClick={ () => navigate('/customer/products') }
-            data-testid="customer_products__element-navbar-link-products"
-          >
-            PRODUTOS
-          </button>
-        )}
-      <button
-        type="button"
-        onClick={ () => navigate(ordersPath) }
-        data-testid="customer_products__element-navbar-link-orders"
-      >
-        MEUS PEDIDOS
-      </button>
-      <button
-        type="button"
-        data-testid="customer_products__element-navbar-user-full-name"
-      >
-        { username }
-      </button>
-      <button
-        type="button"
-        onClick={ handleLogout }
-        data-testid="customer_products__element-navbar-link-logout"
-      >
-        Sair
-      </button>
+    <header className="main-header">
+      <div>
+        { isProductPage
+          && (
+            <button
+              type="button"
+              onClick={ () => navigate('/customer/products') }
+              data-testid="customer_products__element-navbar-link-products"
+            >
+              PRODUTOS
+            </button>
+          )}
+        <button
+          type="button"
+          onClick={ () => navigate(ordersPath) }
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          MEUS PEDIDOS
+        </button>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          data-testid="customer_products__element-navbar-user-full-name"
+        >
+          { username }
+        </button>
+        <button
+          type="button"
+          onClick={ handleLogout }
+          data-testid="customer_products__element-navbar-link-logout"
+        >
+          Sair
+        </button>
+      </div>
     </header>
   );
 }
