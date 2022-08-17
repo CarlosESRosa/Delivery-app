@@ -1,0 +1,67 @@
+.component-product {
+  background-color: #EAF1EF;
+  border: 1px solid #B1C2BE;
+  height: 360px;
+  margin: 40px;
+  padding: 0;
+  position: relative;
+  width: 280px;
+}
+
+.component-product > section {
+  background-color: red;
+  height: 280px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.component-product h5 {
+  font-weight: 400;
+  margin: 10px auto;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.component-product img {
+  display: inline-block;
+  width: 100%;
+}
+
+.component-product .product-price {
+  align-items: center;
+  background-color: rgb(100 100 100 / 5%);
+  box-sizing: border-box;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  margin: 20px;
+  position: absolute;
+  width: 85px;
+}
+
+.component-product .product-price::before {
+  content: "R$";
+  padding: 5px;
+}
+
+.component-product footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.component-product button {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: var(--default-light-color);
+  height: 30px;
+  width: 30px;
+}
+
+.component-product input {
+  height: 30px;
+  width: 70px;
+}
