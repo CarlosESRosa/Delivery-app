@@ -1,0 +1,32 @@
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  padding: 30px 0;
+  width: 100%;
+}
+
+.car-button {
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  bottom: 30px;
+  color: var(--default-light-color);
+  overflow: hidden;
+  padding: 10px;
+  position: fixed;
+  right: 30px;
+  transition: 500ms;
+  white-space: nowrap;
+  width: 40px;
+}
+
+.car-button:hover {
+  width: 300px;
+}
+
+.car-button button {
+  background-color: inherit;
+  border: none;
+  color: var(--default-light-color);
+}

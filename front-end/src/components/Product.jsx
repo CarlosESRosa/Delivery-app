@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { updateCart } from '../helpers/localStore';
+import '../styles/components/Product.css';
 
 export default function Product(props) {
   const { id, name, price, urlImage, handleCart, prevQuantity } = props;
@@ -29,8 +30,11 @@ export default function Product(props) {
     });
   };
   return (
-    <div>
-      <aside data-testid={ `customer_products__element-card-price-${id}` }>
+    <div className="component-product">
+      <aside
+        className="product-price"
+        data-testid={ `customer_products__element-card-price-${id}` }
+      >
         { price.replace(/\./, ',') }
       </aside>
       <section>
@@ -39,8 +43,8 @@ export default function Product(props) {
           src={ urlImage }
           alt={ name }
         />
-        <h5 data-testid={ `customer_products__element-card-title-${id}` }>{ name }</h5>
       </section>
+      <h5 data-testid={ `customer_products__element-card-title-${id}` }>{ name }</h5>
       <footer>
         <button
           data-testid={ `customer_products__button-card-rm-item-${id}` }

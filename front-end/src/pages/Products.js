@@ -5,6 +5,7 @@ import Product from '../components/Product';
 import { getProducts } from '../helpers/fetchAPI';
 import '../App.css';
 import { getCart, prevQuantity } from '../helpers/localStore';
+import '../styles/pages/Products.css';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -20,7 +21,7 @@ export default function Products() {
   return (
     <div>
       <Header isProductPage />
-      <section>
+      <section className="products-container">
         {products.map(({ id, name, price, url_image: urlImage }) => (
           <Product
             key={ id }
@@ -33,7 +34,7 @@ export default function Products() {
           />
         ))}
       </section>
-      <div id="car-button">
+      <div id="car-button" className="car-button">
         <button
           data-testid="customer_products__button-cart"
           onClick={ () => navigate('/customer/checkout') }
