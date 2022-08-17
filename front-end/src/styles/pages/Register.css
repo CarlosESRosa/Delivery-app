@@ -1,0 +1,45 @@
+.page-register {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.register-form {
+  align-items: center;
+  background-color: #EAF1EF;
+  border: 1px solid #B1C2BE;
+  box-shadow: 1px 2px 5px 1px rgb(240, 240, 240);
+  display: flex;
+  flex-direction: column;
+  height: 505px;
+  justify-content: center;
+  width: 425px;
+}
+
+.page-register h1 {
+  font-weight: 100;
+  top: 5px;
+}
+
+.register-form label {
+  margin: 10px 0;
+}
+
+.register-form h3 {
+  font-size: 16px;
+  font-weight: 300;
+  margin: 5px 0;
+  padding: 0;
+}
+
+.register-form button {
+  margin: 10px 0;
+}
+
+.page-register span {
+  bottom: 10px;
+  color: rgba(183, 42, 42, 0.835);
+  position: absolute;
+}
