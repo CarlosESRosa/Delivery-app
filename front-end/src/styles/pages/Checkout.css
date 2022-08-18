@@ -1,0 +1,40 @@
+.checkout-page {
+  padding: 20px;
+}
+
+.checkout-page input, .checkout-page select {
+  display: block;
+  margin: 10px 0;
+}
+
+.checkout-page label {
+  margin: 10px;
+}
+
+aside.default-primary-button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.checkout-page form {
+  align-items: center;
+  border: 1px solid #b1c2be;
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  min-height: 180px;
+  padding: 5px;
+  width: 95%;
+}
+
+.checkout-page table {
+  border: 1px solid #b1c2be;
+  border-radius: 5px;
+  padding: 10px;
+  width: 95%;
+}

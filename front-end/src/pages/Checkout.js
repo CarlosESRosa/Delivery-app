@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import TableCheckout from '../components/TableCheckout';
 import { getSellers, saveSale } from '../helpers/fetchAPI';
 import { getCart, getLocalUser, removeItem } from '../helpers/localStore';
+import '../styles/pages/Checkout.css';
 
 export default function Checkout() {
   const [cart, setCart] = useState(getCart());
@@ -44,7 +45,7 @@ export default function Checkout() {
   return (
     <div>
       <Header />
-      <div>
+      <div className="checkout-page">
         <h4>Finalizar Pedido</h4>
         <table className="checkout-table">
           <tr>
@@ -67,7 +68,10 @@ export default function Checkout() {
             />
           )) : 'test'}
         </table>
-        <aside data-testid="customer_checkout__element-order-total-price">
+        <aside
+          className="default-button default-primary-button"
+          data-testid="customer_checkout__element-order-total-price"
+        >
           Total:
           {cart.total.toFixed(2).toString().replace('.', ',')}
         </aside>
@@ -114,6 +118,7 @@ export default function Checkout() {
             />
           </label>
           <button
+            className="default-button default-primary-button"
             type="button"
             data-testid="customer_checkout__button-submit-order"
             onClick={ handleSubmit }

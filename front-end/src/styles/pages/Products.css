@@ -12,16 +12,15 @@
   border-radius: 5px;
   bottom: 30px;
   color: var(--default-light-color);
-  overflow: hidden;
   padding: 10px;
   position: fixed;
-  right: 30px;
-  transition: 500ms;
+  right: 300px;
   white-space: nowrap;
-  width: 40px;
+  width: 300px;
 }
 
 .car-button:hover {
+  right: 340px;
   width: 300px;
 }
 
