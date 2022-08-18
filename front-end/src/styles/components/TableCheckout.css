@@ -8,26 +8,26 @@
   background-color: var(--default-light-color);
 }
 
-.product-row td:nth-child(1) {
+.product-row td:nth-child( 1 ) {
   background-color: var(--secondary-color);
 }
 
-.product-row td:nth-child(3) {
+.product-row td:nth-child( 3 ) {
   background-color: var(--primary-color);
   color: white;
 }
 
-.product-row td:nth-child(4) {
+.product-row td:nth-child( 4 ) {
   background-color: var(--tertiary-color);
   color: white;
 }
 
-.product-row td:nth-child(5) {
+.product-row td:nth-child( 5 ) {
   background-color: var(--quaternary-color);
   color: white;
 }
 
-.product-row td:nth-child(6) {
+.product-row td:nth-child( 6 ) {
   padding: 0;
 }
 
@@ -35,11 +35,11 @@
   background-color: var(--secondary-color);
   border: none;
   color: white;
-  height: 20px;
-  padding: 0;
-  margin: 0;
-  width: 100%;
   cursor: pointer;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 .product-row button:hover {
