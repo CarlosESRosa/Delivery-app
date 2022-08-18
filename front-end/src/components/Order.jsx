@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/components/Order.css';
 
 export default function Order({
   id,
@@ -10,8 +11,9 @@ export default function Order({
   address,
 }) {
   return (
-    <div>
+    <div className="component-order">
       <section
+        className="white-square"
         data-testid={
           seller
             ? `seller_orders__element-order-id-${id}`
@@ -22,6 +24,7 @@ export default function Order({
       </section>
 
       <section
+        className={ `sale-status ${status.split(' ').join('-').toLowerCase()}` }
         data-testid={
           seller
             ? `seller_orders__element-delivery-status-${id}`
@@ -31,7 +34,7 @@ export default function Order({
         { status }
       </section>
 
-      <section>
+      <section className="sale-details">
         <section
           data-testid={
             seller
