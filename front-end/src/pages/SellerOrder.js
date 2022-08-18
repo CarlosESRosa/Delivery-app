@@ -36,9 +36,9 @@ function SellerOrder() {
   return (
     <>
       <Header />
-      <main>
+      <main className="page-order-detail">
         <h2>Detalhe do pedido</h2>
-        <section>
+        <section className="order-details-container">
           <header>
             <p data-testid={ FIRST_TEST_ID }>
               { `PEDIDO ${saleData.id}` }
@@ -47,11 +47,16 @@ function SellerOrder() {
               {new Date(saleData.saleDate).toLocaleDateString('pt-br')}
             </p>
 
-            <p data-testid={ STATUS }>
+            <p
+              className={ `sale-status ${saleData.status
+                .split(' ').join('-').toLowerCase()}` }
+              data-testid={ STATUS }
+            >
               { saleData.status }
             </p>
 
             <button
+              className="default-tertiary-button"
               data-testid={ LABEL_CHECK }
               onClick={ () => handleCheck('Preparando') }
               disabled={ saleData.status !== 'Pendente' }
@@ -72,7 +77,10 @@ function SellerOrder() {
 
           <SellerOrderDetailsTable products={ saleData.sales } />
 
-          <h3 data-testid={ TOTAL_PRICE }>
+          <h3
+            className="default-button default-primary-button"
+            data-testid={ TOTAL_PRICE }
+          >
             { saleData.totalPrice.toString().replace('.', ',') }
           </h3>
         </section>
