@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/components/TableCheckout.css';
 import formatCurrency from '../helpers/formatCurrency';
 
 export default function TableCheckout({ id, name, price, value, index, removeProduct }) {
   return (
-    <tr>
+    <tr className="product-row">
       <td data-testid={ `customer_checkout__element-order-table-item-number-${index}` }>
         {index + 1}
       </td>

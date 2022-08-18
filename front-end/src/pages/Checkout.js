@@ -46,7 +46,7 @@ export default function Checkout() {
       <Header />
       <div>
         <h4>Finalizar Pedido</h4>
-        <table>
+        <table className="checkout-table">
           <tr>
             <td>Item</td>
             <td>Descrição</td>
