@@ -4,6 +4,7 @@ import Order from '../components/Order';
 import { getLocalUser } from '../helpers/localStore';
 import { getSales } from '../helpers/fetchAPI';
 import Header from '../components/Header';
+import '../styles/pages/Orders.css';
 
 function Orders() {
   const [sales, setSales] = useState([]);
@@ -22,36 +23,38 @@ function Orders() {
           ? <Header />
           : <Header isProductPage />
       }
-      {
-        sales.length > 0 && (
-          sales.map((sale) => {
-            const date = new Date(sale.saleDate).toLocaleDateString('pt-br');
-            const price = sale.totalPrice.toLocaleString('pr-br', {
-              style: 'currency',
-              currency: 'BRL',
-            });
-            return (
-              <Link
-                to={
-                  pathname.includes('seller')
-                    ? `/seller/orders/${sale.id}`
-                    : `/customer/orders/${sale.id}`
-                }
-                key={ `order-id-${sale.id}` }
-              >
-                <Order
-                  id={ sale.id }
-                  status={ sale.status }
-                  saleDate={ date }
-                  totalPrice={ price }
-                  seller={ pathname.includes('seller') }
-                  address={ `${sale.deliveryAddress}, ${sale.deliveryNumber}` }
-                />
-              </Link>
-            );
-          })
-        )
-      }
+      <div className="orders-container">
+        {
+          sales.length > 0 && (
+            sales.map((sale) => {
+              const date = new Date(sale.saleDate).toLocaleDateString('pt-br');
+              const price = sale.totalPrice.toLocaleString('pr-br', {
+                style: 'currency',
+                currency: 'BRL',
+              });
+              return (
+                <Link
+                  to={
+                    pathname.includes('seller')
+                      ? `/seller/orders/${sale.id}`
+                      : `/customer/orders/${sale.id}`
+                  }
+                  key={ `order-id-${sale.id}` }
+                >
+                  <Order
+                    id={ sale.id }
+                    status={ sale.status }
+                    saleDate={ date }
+                    totalPrice={ price }
+                    seller={ pathname.includes('seller') }
+                    address={ `${sale.deliveryAddress}, ${sale.deliveryNumber}` }
+                  />
+                </Link>
+              );
+            })
+          )
+        }
+      </div>
     </div>
   );
 }

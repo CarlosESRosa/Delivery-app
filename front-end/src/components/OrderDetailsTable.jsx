@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import formatCurrency from '../helpers/formatCurrency';
+import '../styles/components/OrderDetailsTable.css';
 
 export default function OrderDetailsTable({ products }) {
   const INDEX = 'customer_order_details__element-order-table-item-number-';

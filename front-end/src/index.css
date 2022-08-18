@@ -41,10 +41,13 @@ input, select {
 }
 
 .default-button {
+  align-items: center;
   border: 1px solid #B1C2BE;
   border-radius: 5px;
   box-sizing: border-box;
+  display: flex;
   height: 40px;
+  justify-content: center;
   width: 371px;
 }
 

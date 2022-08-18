@@ -4,6 +4,7 @@ import { getLocalUser } from '../helpers/localStore';
 import Header from '../components/Header';
 import { getSaleById, updateSaleStatus } from '../helpers/fetchAPI';
 import OrderDetailsTable from '../components/OrderDetailsTable';
+import '../styles/pages/Order.css';
 
 function Order() {
   const [saleData, setSaleData] = useState({});
@@ -30,10 +31,10 @@ function Order() {
   return (
     <>
       <Header />
-      <main>
+      <main className="page-order-detail">
         <h2>Detalhe do pedido</h2>
         {saleData.seller && (
-          <section>
+          <section className="order-details-container">
             <header>
               <p data-testid={ `${LABEL_OR_TEST_ID}${id}` }>
                 { `PEDIDO ${saleData.id}` }
@@ -46,7 +47,11 @@ function Order() {
                 { new Date(saleData.saleDate).toLocaleDateString('pt-br') }
               </p>
 
-              <p data-testid={ STATUS }>
+              <p
+                className={ `sale-status ${saleData.status
+                  .split(' ').join('-').toLowerCase()}` }
+                data-testid={ STATUS }
+              >
                 { saleData.status }
               </p>
 
@@ -62,7 +67,10 @@ function Order() {
 
             <OrderDetailsTable products={ saleData.sales } />
 
-            <h3 data-testid={ TOTAL_PRICE }>
+            <h3
+              className="default-button default-primary-button"
+              data-testid={ TOTAL_PRICE }
+            >
               { saleData.totalPrice.toString().replace('.', ',') }
             </h3>
           </section>
