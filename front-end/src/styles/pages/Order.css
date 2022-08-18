@@ -2,7 +2,7 @@
   padding: 20px;
 }
 
-.page-order-detail .default-button::before {
+.page-order-detail .default-button:before {
   content: 'Total: R$';
   padding: 5px;
 }

@@ -9,7 +9,7 @@
 }
 
 .component-product > section {
-  background-color: red;
+  background-color: rgb(250, 250, 250);
   height: 280px;
   overflow: hidden;
   width: 100%;
