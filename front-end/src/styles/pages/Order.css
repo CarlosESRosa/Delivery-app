@@ -10,3 +10,18 @@
 .page-order-detail .default-button {
   margin: 10px;
 }
+
+.details-header.entregue {
+  background-color: #00d71d;
+  border: 1px;
+  border-radius: 3px;
+  color: white;
+}
+
+.text-bold {
+  font-weight: 500;
+}
+
+.details-header {
+  font-size: 1.1em;
+}

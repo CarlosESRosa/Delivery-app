@@ -42,11 +42,10 @@ export default function Products() {
           disabled={ cartTotalPrice === 0 }
         >
           Ver Carrinho: R$
-          valor total do carrinho
+          <span data-testid="customer_products__checkout-bottom-value">
+            { cartTotalPrice.toString().replace('.', ',') }
+          </span>
         </button>
-        <span data-testid="customer_products__checkout-bottom-value">
-          { cartTotalPrice.toString().replace('.', ',') }
-        </span>
       </div>
     </div>
   );

@@ -10,18 +10,9 @@
 .car-button {
   background-color: var(--primary-color);
   border-radius: 5px;
-  bottom: 30px;
   color: var(--default-light-color);
   padding: 10px;
   position: fixed;
-  right: 300px;
-  white-space: nowrap;
-  width: 300px;
-}
-
-.car-button:hover {
-  right: 340px;
-  width: 300px;
 }
 
 .car-button button {

@@ -25,33 +25,31 @@
 }
 
 .sale-status {
+  align-items: center;
   border: 1px solid #b1c2be;
   border-radius: 3px;
+  display: flex;
+  justify-content: center;
   margin: 0 5px;
   width: 150px;
 }
 
 .sale-status.pendente {
-  align-items: center;
   background-color: rgb(241, 214, 106);
-  display: flex;
-  justify-content: center;
 }
 
-.sale-status.em-transito {
-  align-items: center;
-  background-color: rgb(40, 188, 158);
+.sale-status.preparando {
+  background-color: var(--secondary-color);
+}
+
+.sale-status.em-trânsito {
+  background-color: rgb(0, 204, 204);
   color: white;
-  display: flex;
-  justify-content: center;
 }
 
 .sale-status.entregue {
-  align-items: center;
-  background-color: rgb(40, 188, 106);
+  background-color: #00d71d;
   color: white;
-  display: flex;
-  justify-content: center;
 }
 
 .component-order .sale-details {

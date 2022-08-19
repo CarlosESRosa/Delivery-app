@@ -10,6 +10,8 @@
 .main-header button {
   color: var(--default-light-color);
   cursor: pointer;
+  font-size: medium;
+  font-weight: 500;
   height: 100%;
   padding: 0 20px;
 }

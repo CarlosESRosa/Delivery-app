@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import TableCheckout from '../components/TableCheckout';
 import { getSellers, saveSale } from '../helpers/fetchAPI';
-import { getCart, getLocalUser, removeItem } from '../helpers/localStore';
+import { getCart, getLocalUser, removeItem, clearCart } from '../helpers/localStore';
 import '../styles/pages/Checkout.css';
 
 export default function Checkout() {
@@ -24,6 +24,7 @@ export default function Checkout() {
     };
 
     const data = await saveSale(getLocalUser().token, sale);
+    clearCart();
     navigate(`/customer/orders/${data.data.id}`);
   };
 
@@ -44,7 +45,7 @@ export default function Checkout() {
 
   return (
     <div>
-      <Header />
+      <Header isProductPage />
       <div className="checkout-page">
         <h4>Finalizar Pedido</h4>
         <table className="checkout-table">

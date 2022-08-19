@@ -15,7 +15,35 @@ function Orders() {
   };
 
   useEffect(() => getAll(), []);
+  if (pathname.includes('seller') && sales.length === 0) {
+    return (
+      <div>
+        {
+          pathname.includes('seller')
+            ? <Header />
+            : <Header isProductPage />
+        }
+        <h3>
+          Você ainda nao possui nenhum pedido, ops..
+        </h3>
+      </div>
+    );
+  }
 
+  if (pathname.includes('customer') && sales.length === 0) {
+    return (
+      <div>
+        {
+          pathname.includes('seller')
+            ? <Header />
+            : <Header isProductPage />
+        }
+        <h3>
+          Você ainda nao fez nenhuma compra, ops..
+        </h3>
+      </div>
+    );
+  }
   return (
     <div>
       {
