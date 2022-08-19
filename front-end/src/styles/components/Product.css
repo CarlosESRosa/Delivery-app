@@ -31,8 +31,8 @@
 .component-product .product-price {
   align-items: center;
   background-color: rgb(250, 250, 250, 0.6);
-  box-sizing: border-box;
   border-radius: 5px;
+  box-sizing: border-box;
   display: flex;
   height: 30px;
   justify-content: center;

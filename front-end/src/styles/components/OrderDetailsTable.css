@@ -20,12 +20,13 @@
   transition: 300ms;
 }
 
-.default-tertiary-button.finish{
+.default-tertiary-button.finish {
   background: rgb(0, 204, 204);
   border: 1px solid rgb(0, 204, 204);
   color: white;
   transition: 300ms;
 }
+
 .default-tertiary-button:hover {
   background: inherit;
   border: 1px solid var(--secondary-color);

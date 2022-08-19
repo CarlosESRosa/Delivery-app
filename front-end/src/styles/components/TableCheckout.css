@@ -21,14 +21,14 @@
 
 .product-row td:nth-child( 4 ) {
   background-color: var(--tertiary-color);
-  color: white;
   border-radius: 5px;
+  color: white;
 }
 
 .product-row td:nth-child( 5 ) {
   background-color: var(--quaternary-color);
-  color: white;
   border-radius: 5px;
+  color: white;
 }
 
 .product-row td:nth-child( 6 ) {
@@ -44,9 +44,8 @@
   height: 20px;
   margin: 0;
   padding: 0;
-  width: 100%;
   font-size: 1em;
-
+  width: 100%;
 }
 
 .product-row button:hover {

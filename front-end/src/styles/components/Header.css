@@ -2,7 +2,7 @@
   background-color: var(--primary-color);
   box-sizing: border-box;
   display: flex;
-  height:50px;
+  height: 50px;
   justify-content: space-between;
   width: 100%;
 }
@@ -10,11 +10,11 @@
 .main-header button {
   color: var(--default-light-color);
   cursor: pointer;
+  font-size: medium;
+  font-weight: bold;
   height: 100%;
   padding: 0 20px;
-  font-weight: bold;
-  font-size:medium;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .main-header div:nth-child( 2 ) button:nth-child( 1 ) {

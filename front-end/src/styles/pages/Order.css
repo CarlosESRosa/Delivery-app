@@ -11,17 +11,17 @@
   margin: 10px;
 }
 
-.details-header.entregue{
-  background-color: #00D71D;
+.details-header.entregue {
+  background-color: #00d71d;
+  border: 1px;
   color:white;
-  border: 1px ;
   border-radius: 3px;
 }
 
-.text-bold{
+.text-bold {
   font-weight: bold;
 }
 
-.details-header{
+.details-header {
   font-size: 1.1em;
 }
