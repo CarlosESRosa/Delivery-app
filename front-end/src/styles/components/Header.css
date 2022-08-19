@@ -14,7 +14,8 @@
   font-weight: bold;
   height: 100%;
   padding: 0 20px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS" , "Lucida Sans Unicode" ,
+  "Lucida Grande" , "Lucida Sans" , Arial , sans-serif;
 }
 
 .main-header div:nth-child( 2 ) button:nth-child( 1 ) {

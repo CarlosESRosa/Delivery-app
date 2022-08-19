@@ -27,10 +27,10 @@
 .sale-status {
   border: 1px solid #b1c2be;
   border-radius: 3px;
-  margin: 0 5px;
   display: flex;
-  width: 150px;
+  margin: 0 5px;
   align-items: center;
+  width: 150px;
   justify-content: center;
 }
 

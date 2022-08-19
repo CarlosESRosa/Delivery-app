@@ -14,12 +14,12 @@
 .details-header.entregue {
   background-color: #00d71d;
   border: 1px;
-  color:white;
   border-radius: 3px;
+  color: white;
 }
 
 .text-bold {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .details-header {
