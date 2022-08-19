@@ -66,6 +66,7 @@ function SellerOrder() {
             </button>
 
             <button
+              className="default-tertiary-button finish"
               data-testid={ DISPATCH_LABEL }
               onClick={ () => handleCheck('Em Trânsito') }
               disabled={ saleData.status !== 'Preparando' }

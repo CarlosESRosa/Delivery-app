@@ -30,20 +30,21 @@ function Order() {
 
   return (
     <>
-      <Header />
+      <Header isProductPage />
       <main className="page-order-detail">
         <h2>Detalhe do pedido</h2>
         {saleData.seller && (
           <section className="order-details-container">
-            <header>
-              <p data-testid={ `${LABEL_OR_TEST_ID}${id}` }>
+            <header className="details-header">
+              <p className="text-bold" data-testid={ `${LABEL_OR_TEST_ID}${id}` }>
                 { `PEDIDO ${saleData.id}` }
               </p>
               <p data-testid={ LABEL_NAME }>
-                { `P. Vend: ${saleData.seller.name}` }
+                { `P. Vend:
+                ${saleData.seller.name}` }
               </p>
 
-              <p data-testid={ LABEL_DATE }>
+              <p className="text-bold" data-testid={ LABEL_DATE }>
                 { new Date(saleData.saleDate).toLocaleDateString('pt-br') }
               </p>
 
@@ -56,6 +57,7 @@ function Order() {
               </p>
 
               <button
+                className="details-header entregue"
                 data-testid={ LABEL_CHECK }
                 onClick={ handleCheck }
                 disabled={ saleData.status !== 'Em Trânsito' }

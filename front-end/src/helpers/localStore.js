@@ -14,7 +14,6 @@ export const getCart = () => {
 };
 
 export const updateCart = ({ id, name, price, value }) => {
-  // value é a quantidade
   const { items, total } = getCart();
   const otherItems = items.filter((item) => item.id !== id);
   const prevItem = items.find((item) => item.id === id);
@@ -26,6 +25,14 @@ export const updateCart = ({ id, name, price, value }) => {
   };
   localStorage.setItem('cart', JSON.stringify(newCart));
   return totalPrice;
+};
+
+export const clearCart = () => {
+  const cartClear = {
+    items: [],
+    total: 0.00,
+  };
+  localStorage.setItem('cart', JSON.stringify(cartClear));
 };
 
 export const prevQuantity = (id) => {
