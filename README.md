@@ -4,7 +4,7 @@ Esse foi um projeto em grupo desenvolvido durante minha formação na Trybe. A p
 
 ### Como rodar
 Abra um terminal na raiz do projeto e rode os comandos:
-docker-compose up // pode demorar um pouco
+- docker-compose up // pode demorar um pouco
 
 ### Skills Frontend
 - React
